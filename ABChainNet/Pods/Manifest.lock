@@ -1,0 +1,24 @@
+PODS:
+  - CocoaAsyncSocket (7.6.3)
+  - NSBencodeSerialization (1.0.0)
+  - Protobuf (3.6.0)
+
+DEPENDENCIES:
+  - CocoaAsyncSocket
+  - NSBencodeSerialization
+  - Protobuf
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CocoaAsyncSocket
+    - NSBencodeSerialization
+    - Protobuf
+
+SPEC CHECKSUMS:
+  CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
+  NSBencodeSerialization: ebc09beeefcbce8f622e3e03b2956abb6b96b843
+  Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
+
+PODFILE CHECKSUM: d25bff7ba34884f1dd52532c0797370498d79b00
+
+COCOAPODS: 1.5.3
