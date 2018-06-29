@@ -128,7 +128,7 @@
 		A895836120E5C57A00475318 /* NetConnNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetConnNode.m; sourceTree = "<group>"; };
 		A895836220E5C57A00475318 /* BCNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetWorking.m; sourceTree = "<group>"; };
 		A895836320E5C57A00475318 /* KUKcpDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUKcpDataQueue.h; sourceTree = "<group>"; };
-		A895837B20E5E05100475318 /* KUNetWorkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkHeader.h; sourceTree = "<group>"; };
+		A895837C20E5F01500475318 /* KUNetWorkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,7 +245,6 @@
 		A89582E220E5C51100475318 /* MRC */ = {
 			isa = PBXGroup;
 			children = (
-				A895837B20E5E05100475318 /* KUNetWorkHeader.h */,
 				A89582E320E5C51100475318 /* Pbmessage.pbobjc.m */,
 				A89582E420E5C51100475318 /* Pbmessage.pbobjc.h */,
 			);
@@ -283,6 +282,7 @@
 		A895834720E5C57A00475318 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A895837C20E5F01500475318 /* KUNetWorkHeader.h */,
 				A895834820E5C57A00475318 /* NetEncrypt.h */,
 				A895834920E5C57A00475318 /* NSData+UTF8.m */,
 				A895834A20E5C57A00475318 /* GCDTimer.m */,
