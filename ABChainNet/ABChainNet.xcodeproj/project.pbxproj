@@ -123,12 +123,12 @@
 		A895835B20E5C57A00475318 /* BCNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetWorking.h; sourceTree = "<group>"; };
 		A895835C20E5C57A00475318 /* UDPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPManager.m; sourceTree = "<group>"; };
 		A895835D20E5C57A00475318 /* KUKcpOnUdp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUKcpOnUdp.m; sourceTree = "<group>"; };
-		A895835E20E5C57A00475318 /* KUNetWorkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkHeader.h; sourceTree = "<group>"; };
 		A895835F20E5C57A00475318 /* KUNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorking.h; sourceTree = "<group>"; };
 		A895836020E5C57A00475318 /* KUNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkManager.h; sourceTree = "<group>"; };
 		A895836120E5C57A00475318 /* NetConnNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetConnNode.m; sourceTree = "<group>"; };
 		A895836220E5C57A00475318 /* BCNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetWorking.m; sourceTree = "<group>"; };
 		A895836320E5C57A00475318 /* KUKcpDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUKcpDataQueue.h; sourceTree = "<group>"; };
+		A895837B20E5E05100475318 /* KUNetWorkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkHeader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +245,7 @@
 		A89582E220E5C51100475318 /* MRC */ = {
 			isa = PBXGroup;
 			children = (
+				A895837B20E5E05100475318 /* KUNetWorkHeader.h */,
 				A89582E320E5C51100475318 /* Pbmessage.pbobjc.m */,
 				A89582E420E5C51100475318 /* Pbmessage.pbobjc.h */,
 			);
@@ -307,7 +308,6 @@
 				A895835A20E5C57A00475318 /* KUKcpDataQueue.m */,
 				A895835520E5C57A00475318 /* KUKcpOnUdp.h */,
 				A895835D20E5C57A00475318 /* KUKcpOnUdp.m */,
-				A895835E20E5C57A00475318 /* KUNetWorkHeader.h */,
 				A895835F20E5C57A00475318 /* KUNetWorking.h */,
 				A895835920E5C57A00475318 /* KUNetWorking.m */,
 				A895836020E5C57A00475318 /* KUNetWorkManager.h */,
