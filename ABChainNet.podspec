@@ -104,18 +104,18 @@ Pod::Spec.new do |s|
 
   s.subspec "Utils" do |util|
     util.source_files = 'ABChainNet/ChainNet/Utils/*.{h,m}'
-    util.dependency 'ABChainNet/MRC'
-    util.dependency 'CocoaAsyncSocket'
     util.dependency 'NSBencodeSerialization'
   end
 
   s.subspec "Model" do |model|
     model.source_files = 'ABChainNet/ChainNet/Model/*.{h,m,c}'
+    model.dependency 'ABChainNet/MRC'
     model.dependency 'ABChainNet/Utils'
   end
 
   s.subspec "NetWork" do |netWork|
     netWork.source_files = 'ABChainNet/ChainNet/NetWork/*.{h,m}'
+    netWork.dependency 'CocoaAsyncSocket'
     netWork.dependency 'ABChainNet/Model'
   end
 
