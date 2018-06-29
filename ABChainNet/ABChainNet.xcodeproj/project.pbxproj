@@ -16,30 +16,30 @@
 		A83414EB20E5BB4A006EC41F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A83414EA20E5BB4A006EC41F /* main.m */; };
 		A83414F520E5BB4A006EC41F /* ABChainNetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A83414F420E5BB4A006EC41F /* ABChainNetTests.m */; };
 		A834150020E5BB4A006EC41F /* ABChainNetUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A83414FF20E5BB4A006EC41F /* ABChainNetUITests.m */; };
-		A834154320E5BCA9006EC41F /* KUNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A834151220E5BCA9006EC41F /* KUNetWorkManager.m */; };
-		A834154420E5BCA9006EC41F /* KUNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = A834151320E5BCA9006EC41F /* KUNetWorking.m */; };
-		A834154520E5BCA9006EC41F /* KUKcpDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A834151420E5BCA9006EC41F /* KUKcpDataQueue.m */; };
-		A834154620E5BCA9006EC41F /* UDPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A834151620E5BCA9006EC41F /* UDPManager.m */; };
-		A834154720E5BCA9006EC41F /* KUKcpOnUdp.m in Sources */ = {isa = PBXBuildFile; fileRef = A834151720E5BCA9006EC41F /* KUKcpOnUdp.m */; };
-		A834154820E5BCA9006EC41F /* NetConnNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A834151B20E5BCA9006EC41F /* NetConnNode.m */; };
-		A834154920E5BCA9006EC41F /* BCNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = A834151C20E5BCA9006EC41F /* BCNetWorking.m */; };
-		A834154A20E5BCA9006EC41F /* NSData+UTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152020E5BCA9006EC41F /* NSData+UTF8.m */; };
-		A834154B20E5BCA9006EC41F /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152120E5BCA9006EC41F /* GCDTimer.m */; };
-		A834154C20E5BCA9006EC41F /* NetEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152520E5BCA9006EC41F /* NetEncrypt.m */; };
-		A834154D20E5BCA9006EC41F /* CBIPAdress.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152620E5BCA9006EC41F /* CBIPAdress.m */; };
-		A834154E20E5BCA9006EC41F /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152920E5BCA9006EC41F /* NSDate+Timestamp.m */; };
-		A834154F20E5BCA9006EC41F /* CBKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152A20E5BCA9006EC41F /* CBKeychain.m */; };
-		A834155020E5BCA9006EC41F /* BCNetWorkingHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152C20E5BCA9006EC41F /* BCNetWorkingHandle.m */; };
-		A834155120E5BCA9006EC41F /* MsgVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152D20E5BCA9006EC41F /* MsgVersion.m */; };
-		A834155220E5BCA9006EC41F /* Pbmessage.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A834152F20E5BCA9006EC41F /* Pbmessage.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		A834155320E5BCA9006EC41F /* MsgDiscover.m in Sources */ = {isa = PBXBuildFile; fileRef = A834153020E5BCA9006EC41F /* MsgDiscover.m */; };
-		A834155420E5BCA9006EC41F /* ikcp.c in Sources */ = {isa = PBXBuildFile; fileRef = A834153120E5BCA9006EC41F /* ikcp.c */; };
-		A834155520E5BCA9006EC41F /* MsgPingPong.m in Sources */ = {isa = PBXBuildFile; fileRef = A834153520E5BCA9006EC41F /* MsgPingPong.m */; };
-		A834155620E5BCA9006EC41F /* BasicMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A834153720E5BCA9006EC41F /* BasicMsgModel.m */; };
-		A834155720E5BCA9006EC41F /* FormaterDataObj.m in Sources */ = {isa = PBXBuildFile; fileRef = A834153A20E5BCA9006EC41F /* FormaterDataObj.m */; };
-		A834155820E5BCA9006EC41F /* KcpOnUdpObj.m in Sources */ = {isa = PBXBuildFile; fileRef = A834153E20E5BCA9006EC41F /* KcpOnUdpObj.m */; };
-		A834155920E5BCA9006EC41F /* MsgFind.m in Sources */ = {isa = PBXBuildFile; fileRef = A834153F20E5BCA9006EC41F /* MsgFind.m */; };
-		A834155A20E5BCA9006EC41F /* MsgTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = A834154020E5BCA9006EC41F /* MsgTransaction.m */; };
+		A89582E520E5C51100475318 /* Pbmessage.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A89582E320E5C51100475318 /* Pbmessage.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A895836420E5C57A00475318 /* BCNetWorkingHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A895833220E5C57A00475318 /* BCNetWorkingHandle.m */; };
+		A895836520E5C57A00475318 /* MsgVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A895833320E5C57A00475318 /* MsgVersion.m */; };
+		A895836620E5C57A00475318 /* MsgDiscover.m in Sources */ = {isa = PBXBuildFile; fileRef = A895833520E5C57A00475318 /* MsgDiscover.m */; };
+		A895836720E5C57A00475318 /* ikcp.c in Sources */ = {isa = PBXBuildFile; fileRef = A895833620E5C57A00475318 /* ikcp.c */; };
+		A895836820E5C57A00475318 /* MsgPingPong.m in Sources */ = {isa = PBXBuildFile; fileRef = A895833A20E5C57A00475318 /* MsgPingPong.m */; };
+		A895836920E5C57A00475318 /* BasicMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A895833C20E5C57A00475318 /* BasicMsgModel.m */; };
+		A895836A20E5C57A00475318 /* FormaterDataObj.m in Sources */ = {isa = PBXBuildFile; fileRef = A895833E20E5C57A00475318 /* FormaterDataObj.m */; };
+		A895836B20E5C57A00475318 /* KcpOnUdpObj.m in Sources */ = {isa = PBXBuildFile; fileRef = A895834220E5C57A00475318 /* KcpOnUdpObj.m */; };
+		A895836C20E5C57A00475318 /* MsgFind.m in Sources */ = {isa = PBXBuildFile; fileRef = A895834320E5C57A00475318 /* MsgFind.m */; };
+		A895836D20E5C57A00475318 /* MsgTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = A895834420E5C57A00475318 /* MsgTransaction.m */; };
+		A895836E20E5C57A00475318 /* NSData+UTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = A895834920E5C57A00475318 /* NSData+UTF8.m */; };
+		A895836F20E5C57A00475318 /* GCDTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = A895834A20E5C57A00475318 /* GCDTimer.m */; };
+		A895837020E5C57A00475318 /* NetEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = A895834E20E5C57A00475318 /* NetEncrypt.m */; };
+		A895837120E5C57A00475318 /* CBIPAdress.m in Sources */ = {isa = PBXBuildFile; fileRef = A895834F20E5C57A00475318 /* CBIPAdress.m */; };
+		A895837220E5C57A00475318 /* NSDate+Timestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = A895835220E5C57A00475318 /* NSDate+Timestamp.m */; };
+		A895837320E5C57A00475318 /* CBKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = A895835320E5C57A00475318 /* CBKeychain.m */; };
+		A895837420E5C57A00475318 /* KUNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A895835820E5C57A00475318 /* KUNetWorkManager.m */; };
+		A895837520E5C57A00475318 /* KUNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = A895835920E5C57A00475318 /* KUNetWorking.m */; };
+		A895837620E5C57A00475318 /* KUKcpDataQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = A895835A20E5C57A00475318 /* KUKcpDataQueue.m */; };
+		A895837720E5C57A00475318 /* UDPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A895835C20E5C57A00475318 /* UDPManager.m */; };
+		A895837820E5C57A00475318 /* KUKcpOnUdp.m in Sources */ = {isa = PBXBuildFile; fileRef = A895835D20E5C57A00475318 /* KUKcpOnUdp.m */; };
+		A895837920E5C57A00475318 /* NetConnNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A895836120E5C57A00475318 /* NetConnNode.m */; };
+		A895837A20E5C57A00475318 /* BCNetWorking.m in Sources */ = {isa = PBXBuildFile; fileRef = A895836220E5C57A00475318 /* BCNetWorking.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,56 +79,56 @@
 		A83414FB20E5BB4A006EC41F /* ABChainNetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABChainNetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A83414FF20E5BB4A006EC41F /* ABChainNetUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABChainNetUITests.m; sourceTree = "<group>"; };
 		A834150120E5BB4A006EC41F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A834150F20E5BCA9006EC41F /* KUKcpOnUdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUKcpOnUdp.h; sourceTree = "<group>"; };
-		A834151020E5BCA9006EC41F /* UDPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPManager.h; sourceTree = "<group>"; };
-		A834151120E5BCA9006EC41F /* NetConnNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetConnNode.h; sourceTree = "<group>"; };
-		A834151220E5BCA9006EC41F /* KUNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUNetWorkManager.m; sourceTree = "<group>"; };
-		A834151320E5BCA9006EC41F /* KUNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUNetWorking.m; sourceTree = "<group>"; };
-		A834151420E5BCA9006EC41F /* KUKcpDataQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUKcpDataQueue.m; sourceTree = "<group>"; };
-		A834151520E5BCA9006EC41F /* BCNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetWorking.h; sourceTree = "<group>"; };
-		A834151620E5BCA9006EC41F /* UDPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPManager.m; sourceTree = "<group>"; };
-		A834151720E5BCA9006EC41F /* KUKcpOnUdp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUKcpOnUdp.m; sourceTree = "<group>"; };
-		A834151820E5BCA9006EC41F /* KUNetWorkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkHeader.h; sourceTree = "<group>"; };
-		A834151920E5BCA9006EC41F /* KUNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorking.h; sourceTree = "<group>"; };
-		A834151A20E5BCA9006EC41F /* KUNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkManager.h; sourceTree = "<group>"; };
-		A834151B20E5BCA9006EC41F /* NetConnNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetConnNode.m; sourceTree = "<group>"; };
-		A834151C20E5BCA9006EC41F /* BCNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetWorking.m; sourceTree = "<group>"; };
-		A834151D20E5BCA9006EC41F /* KUKcpDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUKcpDataQueue.h; sourceTree = "<group>"; };
-		A834151F20E5BCA9006EC41F /* NetEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetEncrypt.h; sourceTree = "<group>"; };
-		A834152020E5BCA9006EC41F /* NSData+UTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+UTF8.m"; sourceTree = "<group>"; };
-		A834152120E5BCA9006EC41F /* GCDTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTimer.m; sourceTree = "<group>"; };
-		A834152220E5BCA9006EC41F /* CBIPAdress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIPAdress.h; sourceTree = "<group>"; };
-		A834152320E5BCA9006EC41F /* NSDate+Timestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
-		A834152420E5BCA9006EC41F /* CBKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBKeychain.h; sourceTree = "<group>"; };
-		A834152520E5BCA9006EC41F /* NetEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetEncrypt.m; sourceTree = "<group>"; };
-		A834152620E5BCA9006EC41F /* CBIPAdress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIPAdress.m; sourceTree = "<group>"; };
-		A834152720E5BCA9006EC41F /* GCDTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
-		A834152820E5BCA9006EC41F /* NSData+UTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+UTF8.h"; sourceTree = "<group>"; };
-		A834152920E5BCA9006EC41F /* NSDate+Timestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Timestamp.m"; sourceTree = "<group>"; };
-		A834152A20E5BCA9006EC41F /* CBKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBKeychain.m; sourceTree = "<group>"; };
-		A834152C20E5BCA9006EC41F /* BCNetWorkingHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetWorkingHandle.m; sourceTree = "<group>"; };
-		A834152D20E5BCA9006EC41F /* MsgVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgVersion.m; sourceTree = "<group>"; };
-		A834152E20E5BCA9006EC41F /* FormaterDataObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormaterDataObj.h; sourceTree = "<group>"; };
-		A834152F20E5BCA9006EC41F /* Pbmessage.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pbmessage.pbobjc.m; sourceTree = "<group>"; };
-		A834153020E5BCA9006EC41F /* MsgDiscover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgDiscover.m; sourceTree = "<group>"; };
-		A834153120E5BCA9006EC41F /* ikcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ikcp.c; sourceTree = "<group>"; };
-		A834153220E5BCA9006EC41F /* MsgTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgTransaction.h; sourceTree = "<group>"; };
-		A834153320E5BCA9006EC41F /* MsgFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgFind.h; sourceTree = "<group>"; };
-		A834153420E5BCA9006EC41F /* KcpOnUdpObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KcpOnUdpObj.h; sourceTree = "<group>"; };
-		A834153520E5BCA9006EC41F /* MsgPingPong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgPingPong.m; sourceTree = "<group>"; };
-		A834153620E5BCA9006EC41F /* cfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfunc.h; sourceTree = "<group>"; };
-		A834153720E5BCA9006EC41F /* BasicMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMsgModel.m; sourceTree = "<group>"; };
-		A834153820E5BCA9006EC41F /* Pbmessage.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pbmessage.pbobjc.h; sourceTree = "<group>"; };
-		A834153920E5BCA9006EC41F /* BCNetWorkingHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetWorkingHandle.h; sourceTree = "<group>"; };
-		A834153A20E5BCA9006EC41F /* FormaterDataObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormaterDataObj.m; sourceTree = "<group>"; };
-		A834153B20E5BCA9006EC41F /* MsgVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgVersion.h; sourceTree = "<group>"; };
-		A834153C20E5BCA9006EC41F /* ikcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ikcp.h; sourceTree = "<group>"; };
-		A834153D20E5BCA9006EC41F /* MsgDiscover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgDiscover.h; sourceTree = "<group>"; };
-		A834153E20E5BCA9006EC41F /* KcpOnUdpObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KcpOnUdpObj.m; sourceTree = "<group>"; };
-		A834153F20E5BCA9006EC41F /* MsgFind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgFind.m; sourceTree = "<group>"; };
-		A834154020E5BCA9006EC41F /* MsgTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgTransaction.m; sourceTree = "<group>"; };
-		A834154120E5BCA9006EC41F /* BasicMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMsgModel.h; sourceTree = "<group>"; };
-		A834154220E5BCA9006EC41F /* MsgPingPong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgPingPong.h; sourceTree = "<group>"; };
+		A89582E320E5C51100475318 /* Pbmessage.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pbmessage.pbobjc.m; sourceTree = "<group>"; };
+		A89582E420E5C51100475318 /* Pbmessage.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pbmessage.pbobjc.h; sourceTree = "<group>"; };
+		A895833220E5C57A00475318 /* BCNetWorkingHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetWorkingHandle.m; sourceTree = "<group>"; };
+		A895833320E5C57A00475318 /* MsgVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgVersion.m; sourceTree = "<group>"; };
+		A895833420E5C57A00475318 /* FormaterDataObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormaterDataObj.h; sourceTree = "<group>"; };
+		A895833520E5C57A00475318 /* MsgDiscover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgDiscover.m; sourceTree = "<group>"; };
+		A895833620E5C57A00475318 /* ikcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ikcp.c; sourceTree = "<group>"; };
+		A895833720E5C57A00475318 /* MsgTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgTransaction.h; sourceTree = "<group>"; };
+		A895833820E5C57A00475318 /* MsgFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgFind.h; sourceTree = "<group>"; };
+		A895833920E5C57A00475318 /* KcpOnUdpObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KcpOnUdpObj.h; sourceTree = "<group>"; };
+		A895833A20E5C57A00475318 /* MsgPingPong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgPingPong.m; sourceTree = "<group>"; };
+		A895833B20E5C57A00475318 /* cfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfunc.h; sourceTree = "<group>"; };
+		A895833C20E5C57A00475318 /* BasicMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMsgModel.m; sourceTree = "<group>"; };
+		A895833D20E5C57A00475318 /* BCNetWorkingHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetWorkingHandle.h; sourceTree = "<group>"; };
+		A895833E20E5C57A00475318 /* FormaterDataObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormaterDataObj.m; sourceTree = "<group>"; };
+		A895833F20E5C57A00475318 /* MsgVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgVersion.h; sourceTree = "<group>"; };
+		A895834020E5C57A00475318 /* ikcp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ikcp.h; sourceTree = "<group>"; };
+		A895834120E5C57A00475318 /* MsgDiscover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgDiscover.h; sourceTree = "<group>"; };
+		A895834220E5C57A00475318 /* KcpOnUdpObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KcpOnUdpObj.m; sourceTree = "<group>"; };
+		A895834320E5C57A00475318 /* MsgFind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgFind.m; sourceTree = "<group>"; };
+		A895834420E5C57A00475318 /* MsgTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgTransaction.m; sourceTree = "<group>"; };
+		A895834520E5C57A00475318 /* BasicMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMsgModel.h; sourceTree = "<group>"; };
+		A895834620E5C57A00475318 /* MsgPingPong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgPingPong.h; sourceTree = "<group>"; };
+		A895834820E5C57A00475318 /* NetEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetEncrypt.h; sourceTree = "<group>"; };
+		A895834920E5C57A00475318 /* NSData+UTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+UTF8.m"; sourceTree = "<group>"; };
+		A895834A20E5C57A00475318 /* GCDTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTimer.m; sourceTree = "<group>"; };
+		A895834B20E5C57A00475318 /* CBIPAdress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBIPAdress.h; sourceTree = "<group>"; };
+		A895834C20E5C57A00475318 /* NSDate+Timestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Timestamp.h"; sourceTree = "<group>"; };
+		A895834D20E5C57A00475318 /* CBKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBKeychain.h; sourceTree = "<group>"; };
+		A895834E20E5C57A00475318 /* NetEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetEncrypt.m; sourceTree = "<group>"; };
+		A895834F20E5C57A00475318 /* CBIPAdress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBIPAdress.m; sourceTree = "<group>"; };
+		A895835020E5C57A00475318 /* GCDTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDTimer.h; sourceTree = "<group>"; };
+		A895835120E5C57A00475318 /* NSData+UTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+UTF8.h"; sourceTree = "<group>"; };
+		A895835220E5C57A00475318 /* NSDate+Timestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Timestamp.m"; sourceTree = "<group>"; };
+		A895835320E5C57A00475318 /* CBKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBKeychain.m; sourceTree = "<group>"; };
+		A895835520E5C57A00475318 /* KUKcpOnUdp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUKcpOnUdp.h; sourceTree = "<group>"; };
+		A895835620E5C57A00475318 /* UDPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPManager.h; sourceTree = "<group>"; };
+		A895835720E5C57A00475318 /* NetConnNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetConnNode.h; sourceTree = "<group>"; };
+		A895835820E5C57A00475318 /* KUNetWorkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUNetWorkManager.m; sourceTree = "<group>"; };
+		A895835920E5C57A00475318 /* KUNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUNetWorking.m; sourceTree = "<group>"; };
+		A895835A20E5C57A00475318 /* KUKcpDataQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUKcpDataQueue.m; sourceTree = "<group>"; };
+		A895835B20E5C57A00475318 /* BCNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCNetWorking.h; sourceTree = "<group>"; };
+		A895835C20E5C57A00475318 /* UDPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UDPManager.m; sourceTree = "<group>"; };
+		A895835D20E5C57A00475318 /* KUKcpOnUdp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KUKcpOnUdp.m; sourceTree = "<group>"; };
+		A895835E20E5C57A00475318 /* KUNetWorkHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkHeader.h; sourceTree = "<group>"; };
+		A895835F20E5C57A00475318 /* KUNetWorking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorking.h; sourceTree = "<group>"; };
+		A895836020E5C57A00475318 /* KUNetWorkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUNetWorkManager.h; sourceTree = "<group>"; };
+		A895836120E5C57A00475318 /* NetConnNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetConnNode.m; sourceTree = "<group>"; };
+		A895836220E5C57A00475318 /* BCNetWorking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetWorking.m; sourceTree = "<group>"; };
+		A895836320E5C57A00475318 /* KUKcpDataQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KUKcpDataQueue.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,82 +234,90 @@
 		A834150D20E5BCA9006EC41F /* ChainNet */ = {
 			isa = PBXGroup;
 			children = (
-				A834150E20E5BCA9006EC41F /* NetWork */,
-				A834151E20E5BCA9006EC41F /* Utils */,
-				A834152B20E5BCA9006EC41F /* Model */,
+				A895833120E5C57A00475318 /* Model */,
+				A895835420E5C57A00475318 /* NetWork */,
+				A895834720E5C57A00475318 /* Utils */,
+				A89582E220E5C51100475318 /* MRC */,
 			);
 			path = ChainNet;
 			sourceTree = SOURCE_ROOT;
 		};
-		A834150E20E5BCA9006EC41F /* NetWork */ = {
+		A89582E220E5C51100475318 /* MRC */ = {
 			isa = PBXGroup;
 			children = (
-				A834151520E5BCA9006EC41F /* BCNetWorking.h */,
-				A834151C20E5BCA9006EC41F /* BCNetWorking.m */,
-				A834151D20E5BCA9006EC41F /* KUKcpDataQueue.h */,
-				A834151420E5BCA9006EC41F /* KUKcpDataQueue.m */,
-				A834150F20E5BCA9006EC41F /* KUKcpOnUdp.h */,
-				A834151720E5BCA9006EC41F /* KUKcpOnUdp.m */,
-				A834151820E5BCA9006EC41F /* KUNetWorkHeader.h */,
-				A834151920E5BCA9006EC41F /* KUNetWorking.h */,
-				A834151320E5BCA9006EC41F /* KUNetWorking.m */,
-				A834151A20E5BCA9006EC41F /* KUNetWorkManager.h */,
-				A834151220E5BCA9006EC41F /* KUNetWorkManager.m */,
-				A834151120E5BCA9006EC41F /* NetConnNode.h */,
-				A834151B20E5BCA9006EC41F /* NetConnNode.m */,
-				A834151020E5BCA9006EC41F /* UDPManager.h */,
-				A834151620E5BCA9006EC41F /* UDPManager.m */,
+				A89582E320E5C51100475318 /* Pbmessage.pbobjc.m */,
+				A89582E420E5C51100475318 /* Pbmessage.pbobjc.h */,
 			);
-			path = NetWork;
+			path = MRC;
 			sourceTree = "<group>";
 		};
-		A834151E20E5BCA9006EC41F /* Utils */ = {
+		A895833120E5C57A00475318 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A834152220E5BCA9006EC41F /* CBIPAdress.h */,
-				A834152620E5BCA9006EC41F /* CBIPAdress.m */,
-				A834152420E5BCA9006EC41F /* CBKeychain.h */,
-				A834152A20E5BCA9006EC41F /* CBKeychain.m */,
-				A834152720E5BCA9006EC41F /* GCDTimer.h */,
-				A834152120E5BCA9006EC41F /* GCDTimer.m */,
-				A834151F20E5BCA9006EC41F /* NetEncrypt.h */,
-				A834152520E5BCA9006EC41F /* NetEncrypt.m */,
-				A834152820E5BCA9006EC41F /* NSData+UTF8.h */,
-				A834152020E5BCA9006EC41F /* NSData+UTF8.m */,
-				A834152320E5BCA9006EC41F /* NSDate+Timestamp.h */,
-				A834152920E5BCA9006EC41F /* NSDate+Timestamp.m */,
+				A895833220E5C57A00475318 /* BCNetWorkingHandle.m */,
+				A895833320E5C57A00475318 /* MsgVersion.m */,
+				A895833420E5C57A00475318 /* FormaterDataObj.h */,
+				A895833520E5C57A00475318 /* MsgDiscover.m */,
+				A895833620E5C57A00475318 /* ikcp.c */,
+				A895833720E5C57A00475318 /* MsgTransaction.h */,
+				A895833820E5C57A00475318 /* MsgFind.h */,
+				A895833920E5C57A00475318 /* KcpOnUdpObj.h */,
+				A895833A20E5C57A00475318 /* MsgPingPong.m */,
+				A895833B20E5C57A00475318 /* cfunc.h */,
+				A895833C20E5C57A00475318 /* BasicMsgModel.m */,
+				A895833D20E5C57A00475318 /* BCNetWorkingHandle.h */,
+				A895833E20E5C57A00475318 /* FormaterDataObj.m */,
+				A895833F20E5C57A00475318 /* MsgVersion.h */,
+				A895834020E5C57A00475318 /* ikcp.h */,
+				A895834120E5C57A00475318 /* MsgDiscover.h */,
+				A895834220E5C57A00475318 /* KcpOnUdpObj.m */,
+				A895834320E5C57A00475318 /* MsgFind.m */,
+				A895834420E5C57A00475318 /* MsgTransaction.m */,
+				A895834520E5C57A00475318 /* BasicMsgModel.h */,
+				A895834620E5C57A00475318 /* MsgPingPong.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A895834720E5C57A00475318 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A895834820E5C57A00475318 /* NetEncrypt.h */,
+				A895834920E5C57A00475318 /* NSData+UTF8.m */,
+				A895834A20E5C57A00475318 /* GCDTimer.m */,
+				A895834B20E5C57A00475318 /* CBIPAdress.h */,
+				A895834C20E5C57A00475318 /* NSDate+Timestamp.h */,
+				A895834D20E5C57A00475318 /* CBKeychain.h */,
+				A895834E20E5C57A00475318 /* NetEncrypt.m */,
+				A895834F20E5C57A00475318 /* CBIPAdress.m */,
+				A895835020E5C57A00475318 /* GCDTimer.h */,
+				A895835120E5C57A00475318 /* NSData+UTF8.h */,
+				A895835220E5C57A00475318 /* NSDate+Timestamp.m */,
+				A895835320E5C57A00475318 /* CBKeychain.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		A834152B20E5BCA9006EC41F /* Model */ = {
+		A895835420E5C57A00475318 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				A834154120E5BCA9006EC41F /* BasicMsgModel.h */,
-				A834153720E5BCA9006EC41F /* BasicMsgModel.m */,
-				A834153920E5BCA9006EC41F /* BCNetWorkingHandle.h */,
-				A834152C20E5BCA9006EC41F /* BCNetWorkingHandle.m */,
-				A834153620E5BCA9006EC41F /* cfunc.h */,
-				A834152E20E5BCA9006EC41F /* FormaterDataObj.h */,
-				A834153A20E5BCA9006EC41F /* FormaterDataObj.m */,
-				A834153120E5BCA9006EC41F /* ikcp.c */,
-				A834153C20E5BCA9006EC41F /* ikcp.h */,
-				A834153420E5BCA9006EC41F /* KcpOnUdpObj.h */,
-				A834153E20E5BCA9006EC41F /* KcpOnUdpObj.m */,
-				A834153D20E5BCA9006EC41F /* MsgDiscover.h */,
-				A834153020E5BCA9006EC41F /* MsgDiscover.m */,
-				A834153320E5BCA9006EC41F /* MsgFind.h */,
-				A834153F20E5BCA9006EC41F /* MsgFind.m */,
-				A834154220E5BCA9006EC41F /* MsgPingPong.h */,
-				A834153520E5BCA9006EC41F /* MsgPingPong.m */,
-				A834153220E5BCA9006EC41F /* MsgTransaction.h */,
-				A834154020E5BCA9006EC41F /* MsgTransaction.m */,
-				A834153B20E5BCA9006EC41F /* MsgVersion.h */,
-				A834152D20E5BCA9006EC41F /* MsgVersion.m */,
-				A834153820E5BCA9006EC41F /* Pbmessage.pbobjc.h */,
-				A834152F20E5BCA9006EC41F /* Pbmessage.pbobjc.m */,
+				A895835520E5C57A00475318 /* KUKcpOnUdp.h */,
+				A895835620E5C57A00475318 /* UDPManager.h */,
+				A895835720E5C57A00475318 /* NetConnNode.h */,
+				A895835820E5C57A00475318 /* KUNetWorkManager.m */,
+				A895835920E5C57A00475318 /* KUNetWorking.m */,
+				A895835A20E5C57A00475318 /* KUKcpDataQueue.m */,
+				A895835B20E5C57A00475318 /* BCNetWorking.h */,
+				A895835C20E5C57A00475318 /* UDPManager.m */,
+				A895835D20E5C57A00475318 /* KUKcpOnUdp.m */,
+				A895835E20E5C57A00475318 /* KUNetWorkHeader.h */,
+				A895835F20E5C57A00475318 /* KUNetWorking.h */,
+				A895836020E5C57A00475318 /* KUNetWorkManager.h */,
+				A895836120E5C57A00475318 /* NetConnNode.m */,
+				A895836220E5C57A00475318 /* BCNetWorking.m */,
+				A895836320E5C57A00475318 /* KUKcpDataQueue.h */,
 			);
-			path = Model;
+			path = NetWork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -464,33 +472,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A834154C20E5BCA9006EC41F /* NetEncrypt.m in Sources */,
-				A834155420E5BCA9006EC41F /* ikcp.c in Sources */,
-				A834154B20E5BCA9006EC41F /* GCDTimer.m in Sources */,
-				A834154920E5BCA9006EC41F /* BCNetWorking.m in Sources */,
-				A834155920E5BCA9006EC41F /* MsgFind.m in Sources */,
-				A834154420E5BCA9006EC41F /* KUNetWorking.m in Sources */,
-				A834155220E5BCA9006EC41F /* Pbmessage.pbobjc.m in Sources */,
-				A834154A20E5BCA9006EC41F /* NSData+UTF8.m in Sources */,
+				A895836520E5C57A00475318 /* MsgVersion.m in Sources */,
 				A83414E020E5BB4A006EC41F /* ViewController.m in Sources */,
-				A834155120E5BCA9006EC41F /* MsgVersion.m in Sources */,
-				A834155020E5BCA9006EC41F /* BCNetWorkingHandle.m in Sources */,
-				A834154620E5BCA9006EC41F /* UDPManager.m in Sources */,
-				A834155A20E5BCA9006EC41F /* MsgTransaction.m in Sources */,
-				A834155620E5BCA9006EC41F /* BasicMsgModel.m in Sources */,
-				A834154720E5BCA9006EC41F /* KUKcpOnUdp.m in Sources */,
-				A834154F20E5BCA9006EC41F /* CBKeychain.m in Sources */,
-				A834154520E5BCA9006EC41F /* KUKcpDataQueue.m in Sources */,
-				A834154D20E5BCA9006EC41F /* CBIPAdress.m in Sources */,
+				A895836D20E5C57A00475318 /* MsgTransaction.m in Sources */,
+				A895837720E5C57A00475318 /* UDPManager.m in Sources */,
 				A83414EB20E5BB4A006EC41F /* main.m in Sources */,
-				A834155720E5BCA9006EC41F /* FormaterDataObj.m in Sources */,
-				A834154820E5BCA9006EC41F /* NetConnNode.m in Sources */,
-				A834154320E5BCA9006EC41F /* KUNetWorkManager.m in Sources */,
+				A895836F20E5C57A00475318 /* GCDTimer.m in Sources */,
+				A895836E20E5C57A00475318 /* NSData+UTF8.m in Sources */,
+				A895837920E5C57A00475318 /* NetConnNode.m in Sources */,
+				A895836620E5C57A00475318 /* MsgDiscover.m in Sources */,
+				A895836C20E5C57A00475318 /* MsgFind.m in Sources */,
+				A895837320E5C57A00475318 /* CBKeychain.m in Sources */,
+				A895837520E5C57A00475318 /* KUNetWorking.m in Sources */,
+				A895836920E5C57A00475318 /* BasicMsgModel.m in Sources */,
+				A895837A20E5C57A00475318 /* BCNetWorking.m in Sources */,
+				A895836420E5C57A00475318 /* BCNetWorkingHandle.m in Sources */,
+				A895837820E5C57A00475318 /* KUKcpOnUdp.m in Sources */,
+				A895837020E5C57A00475318 /* NetEncrypt.m in Sources */,
+				A89582E520E5C51100475318 /* Pbmessage.pbobjc.m in Sources */,
+				A895837420E5C57A00475318 /* KUNetWorkManager.m in Sources */,
+				A895836B20E5C57A00475318 /* KcpOnUdpObj.m in Sources */,
+				A895836720E5C57A00475318 /* ikcp.c in Sources */,
+				A895837620E5C57A00475318 /* KUKcpDataQueue.m in Sources */,
+				A895836820E5C57A00475318 /* MsgPingPong.m in Sources */,
+				A895836A20E5C57A00475318 /* FormaterDataObj.m in Sources */,
+				A895837220E5C57A00475318 /* NSDate+Timestamp.m in Sources */,
 				A83414DD20E5BB4A006EC41F /* AppDelegate.m in Sources */,
-				A834155320E5BCA9006EC41F /* MsgDiscover.m in Sources */,
-				A834154E20E5BCA9006EC41F /* NSDate+Timestamp.m in Sources */,
-				A834155820E5BCA9006EC41F /* KcpOnUdpObj.m in Sources */,
-				A834155520E5BCA9006EC41F /* MsgPingPong.m in Sources */,
+				A895837120E5C57A00475318 /* CBIPAdress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
