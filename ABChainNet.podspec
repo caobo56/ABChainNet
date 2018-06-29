@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "ABChainNet"
-  s.version      = "0.9.5"
+  s.version      = "0.9.6"
   s.summary      = "ABChainNet 的pod库。"
 
   # This description is used to generate tags and improve search results.
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/caobo56/ABChainNet.git", :tag => "0.9.5" }
+  s.source       = { :git => "https://github.com/caobo56/ABChainNet.git", :tag => "0.9.6" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -89,10 +89,6 @@ Pod::Spec.new do |s|
   #  For header files it will include any header in the folder.
   #  Not including the public_header_files will make all headers public.
   #
-
-  # s.source_files = ['ABChainNet/ChainNet/MRC/*.{h,m}', 'ABChainNet/ChainNet/NetWork/*.{h,m}', 'ABChainNet/ChainNet/Model/*.{h,m,c}', 'ABChainNet/ChainNet/Utils/*.{h,m}'] 
-  # s.requires_arc = false
-  # s.requires_arc = ['ABChainNet/ChainNet/NetWork/*.{h,m}', 'ABChainNet/ChainNet/Model/*.{h,m,c}', 'ABChainNet/ChainNet/Utils/*.{h,m}']
 
   s.default_subspec = 'MRC','NetWork','Model','Utils'
 
@@ -119,9 +115,9 @@ Pod::Spec.new do |s|
     netWork.dependency 'ABChainNet/Model'
   end
 
-  s.dependency 'CocoaAsyncSocket'
-  s.dependency 'Protobuf'
-  s.dependency 'NSBencodeSerialization'
+  # s.dependency 'CocoaAsyncSocket'
+  # s.dependency 'Protobuf'
+  # s.dependency 'NSBencodeSerialization'
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #

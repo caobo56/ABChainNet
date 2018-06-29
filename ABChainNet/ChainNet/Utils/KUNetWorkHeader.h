@@ -11,13 +11,10 @@
 
 //------------------------网络层配置-------------------------------------
 
-static NSString * const ZeroPointHost = @"10.10.103.76";
-//static NSString * const ZeroPointHost = @"10.10.120.70";
+static NSString * ZeroPointHost = @"10.10.103.76";
+static int DefaultPort = 9612;//网络层默认端口号
 
-static int const Timeout = 10.0f;//超时时间，udp networkhandle
-
-static int const DefaultPort = 9612;//网络层默认端口号
-//static int const DefaultPort = 10001;//网络层默认端口号
+static int Timeout = 10.0f;//超时时间，udp networkhandle
 
 static NSString *const MagicStr = @"f9beb4d9";//序列化层的魔术关键字，用于识别
 
