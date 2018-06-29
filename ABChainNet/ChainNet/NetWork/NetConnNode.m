@@ -38,7 +38,7 @@
 @end
 
 @implementation NetConnNode{
-
+    
 }
 
 #pragma mark - init
@@ -92,9 +92,11 @@
     peer.ip = ZeroPointHost;
     peer.port = DefaultPort;
     [_peerAddressArray addObject:[peer copy]];
-
+    
     [_peerList removeAllObjects];
-    [_peerList addObjectsFromArray:_peerAddressArray];
+    [_peerList addObject:[peer copy]];
+    
+    [self sendVersionToPeerList];
     
     if([self.delegate respondsToSelector:@selector(netConnNode:updatPeerArr:)]){
         [self.delegate netConnNode:self updatPeerArr:self.peerAddressArray];
@@ -143,7 +145,7 @@
  发送find命令
  
  @param faceID faceID 人脸ID
- @param block block 回调block函数
+ @param findFaceIDBlock block 回调block函数
  */
 -(void)findFaceIDWith:(NSString *)faceID and:(NetConnNodeBlock)findFaceIDBlock{
     NSMutableArray<Transaction *> * transArr = [NSMutableArray arrayWithCapacity:12];
@@ -180,7 +182,7 @@
 
 /**
  向维持心跳的节点列表，广播find消息，并执行block。
-
+ 
  @param faceID faceID 查询条件
  @param peer peer 节点列表
  @param block block 回调函数
@@ -211,7 +213,7 @@
 
 /**
  checkFindAckMessage
-
+ 
  @param replay replay FindAckMessage
  @param condition condition 查询条件
  @return return Transaction 返回查询成功的交易
@@ -221,7 +223,7 @@
     NSError * error;
     NSArray * arr = [NSBencodeSerialization bencodedObjectWithData:replay.result.data_p error:&error];
     if (!error && arr && arr.count > 0) {
-//#warning arr[0] 此处需判断哪一个Transaction 是有效的
+        //#warning arr[0] 此处需判断哪一个Transaction 是有效的
         FormaterDataObj * obj = [[FormaterDataObj alloc]initFromData:arr[0]];
         Transaction * trans_p = (Transaction *)obj.payload;
         NSLog(@"%@",trans_p);
@@ -278,13 +280,10 @@
         if (!error) {
             DiscoverReplyMessage * replay = (DiscoverReplyMessage *)receiveMsg;
             [weakSelf setPeerAddressArray:replay.peerAddressArray];
-
+            
             if([weakSelf.delegate respondsToSelector:@selector(netConnNode:DidStart:)]){
                 [weakSelf.delegate netConnNode:self DidStart:YES];
             }
-            
-            [weakSelf sendVersionToPeerList];
-            
         }else{
             if([weakSelf.delegate respondsToSelector:@selector(netConnNode:DidStart:)]){
                 [weakSelf.delegate netConnNode:self DidStart:NO];
@@ -331,7 +330,7 @@
 
 /**
  sendPingMessage
-
+ 
  @param host host 对应节点的IP
  */
 -(void)sendPingMessageWith:(NSString *)host{
@@ -339,9 +338,9 @@
     PingMessage * pingMessage = [MsgPing creatPingMessage];
     [[BCNetWorking shared] sendPingMessageWith:pingMessage andToHost:host and:^(GPBMessage *receiveMsg, NSError *error) {
         if(!error){
-            NSLog(@"receiveMsg From %@:\n%@",blockHost,receiveMsg);
+            //            NSLog(@"receiveMsg From %@:\n%@",blockHost,receiveMsg);
         }else{
-            NSLog(@"sendPingMessage %@",error.userInfo[@"description"]);
+            //            NSLog(@"sendPingMessage %@",error.userInfo[@"description"]);
         }
     }];
 }
