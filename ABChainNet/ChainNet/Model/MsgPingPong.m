@@ -48,9 +48,9 @@
         super.payload = fmt.payload;
         
         NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-        BOOL networkstate = [us boolForKey:Networkstate];
+        NSString * networkstate = [us valueForKey:Networkstate];
         //networkStatue 网络状态连通性，如果是NO，就不可以回复pong
-        if (networkstate) {
+        if ([networkstate isEqualToString:@"YES"]) {
             PongMessage * pomsg = [[PongMessage alloc]init];
             pomsg.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
             pomsg.minimum = 1;

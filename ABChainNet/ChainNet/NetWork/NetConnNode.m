@@ -54,9 +54,6 @@
 
 +(NetConnNode *)creatNode{
     NetConnNode * sender = [[NetConnNode alloc]init];
-    NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-    [us setBool:NO forKey:Networkstate];
-    [us synchronize];
     return sender;
 }
 
@@ -253,7 +250,7 @@
     [[BCNetWorking shared] sendVersionMessageWith:ver andToHost:ZeroPointHost and:^(GPBMessage *receiveMsg, NSError *error) {
         if (!error) {
             NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-            [us setBool:YES forKey:Networkstate];
+            [us setValue:@"YES" forKey:Networkstate];
             [us synchronize];
             [weakSelf sendDiscoverToZeroPoint];
             [weakSelf startNetConnHeartbeat];
@@ -261,9 +258,6 @@
                 [self.delegate netConnNode:self DidStart:YES];
             }
         }else{
-            NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-            [us setBool:NO forKey:Networkstate];
-            [us synchronize];
             if(self.delegate){
                 [self.delegate netConnNode:self DidStart:NO];
             }
@@ -338,9 +332,9 @@
     PingMessage * pingMessage = [MsgPing creatPingMessage];
     [[BCNetWorking shared] sendPingMessageWith:pingMessage andToHost:host and:^(GPBMessage *receiveMsg, NSError *error) {
         if(!error){
-            //            NSLog(@"receiveMsg From %@:\n%@",blockHost,receiveMsg);
+            NSLog(@"receiveMsg From %@:\n%@",blockHost,receiveMsg);
         }else{
-            //            NSLog(@"sendPingMessage %@",error.userInfo[@"description"]);
+            NSLog(@"sendPingMessage %@",error.userInfo[@"description"]);
         }
     }];
 }

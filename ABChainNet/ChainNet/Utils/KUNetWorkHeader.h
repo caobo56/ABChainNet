@@ -11,7 +11,7 @@
 
 //------------------------网络层配置-------------------------------------
 
-static NSString * ZeroPointHost = @"10.10.103.76";
+static NSString * ZeroPointHost = @"10.10.103.77";
 static int DefaultPort = 9612;//网络层默认端口号
 
 static int Timeout = 10.0f;//超时时间，udp networkhandle
