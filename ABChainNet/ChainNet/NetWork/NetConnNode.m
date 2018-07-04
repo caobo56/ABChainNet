@@ -227,7 +227,7 @@
         for (Transaction_Inputs * input in trans_p.inputsArray) {
             Transaction_Inputs_IssueInput * issueInput = input.issueInput;
             NSString * faceID = [issueInput.data_p utf8String];
-            if ([issueInput.sourceType isEqualToString:@"faceID"] && [faceID isEqualToString:faceID]) {
+            if ([issueInput.sourceType isEqualToString:@"faceID"] && [faceID isEqualToString:condition]) {
                 trans = [trans_p copy];
                 break;
             }
