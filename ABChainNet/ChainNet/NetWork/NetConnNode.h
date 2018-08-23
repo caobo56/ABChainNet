@@ -10,6 +10,7 @@
 
 @class NetConnNode;
 @class DiscoverReplyMessage_PeerAddress;
+@class Transaction;
 
 typedef void(^NetConnNodeBlock)(id message,NSError * error);
 
@@ -57,5 +58,14 @@ typedef void(^NetConnNodeBlock)(id message,NSError * error);
  @param block block 回调block函数
  */
 -(void)sendTranstionWith:(NSString *)faceID andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block;
+
+
+/**
+ 发送Transtion命令
+
+ @param trans trans 要发送的Transaction消息
+ @param block block 回调block函数
+ */
+-(void)sendTranstionWith:(Transaction *)trans With:(NetConnNodeBlock)block;
 
 @end

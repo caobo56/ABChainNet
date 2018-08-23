@@ -136,6 +136,14 @@
 }
 
 
+-(void)sendTranstionWith:(Transaction *)trans With:(NetConnNodeBlock)block{
+    for (DiscoverReplyMessage_PeerAddress * peer in _peerList) {
+        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:peer.ip and:nil];
+    }
+    block(@"消息已经广播完成！",nil);
+}
+
+
 
 #pragma mark - FindFaceID
 /**
