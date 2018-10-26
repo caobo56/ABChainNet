@@ -56,9 +56,9 @@
     }
     self.command = command;
     
-//    if([self.command isEqualToString:@"transMsg"]){
-//        NSLog(@"Transaction");
-//    }
+    //    if([self.command isEqualToString:@"transMsg"]){
+    //        NSLog(@"Transaction");
+    //    }
     
     orgData = [[data subdataWithRange:NSMakeRange(24, data.length-24)] copy];
     self.size = (int)orgData.length;
@@ -88,20 +88,31 @@
         orgData = [msgObj data];
         self.magic = [NSData convertHexStrToData:MagicStr];
         self.command = [self commandWithclassKind:msgObj];
+        
+//        if ([self.command isEqualToString:@"discover"]) {
+//            NSLog(@"self.command");
+//        }
         self.size =  (int)[orgData length];
         self.checksum = [NetEncrypt sha256DataTwiceKey:orgData];
         self.payload = msgObj;
         
         NSMutableData * mData = [NSMutableData dataWithCapacity:1400];
         [mData appendData:self.magic];
-        [mData appendBytes:[[self.command dataUsingEncoding:NSUTF8StringEncoding] bytes] length:12];
+        
+        [mData appendBytes:[[self.command dataUsingEncoding:NSUTF8StringEncoding] bytes] length:self.command.length];
+        
+        char byte_chars[9] = {'\0','\0','\0','\0','\0','\0','\0','\0','\0'};
+        if (mData.length < 16) {
+            [mData appendBytes:byte_chars length:12-self.command.length];
+        }
+        
         [mData appendData:[NSData int2Nsdata:self.size]];
         NSData * dataChecksum = [[self.checksum subdataWithRange:NSMakeRange(0, 4)] copy];
         [mData appendData:dataChecksum];
         [mData appendData:orgData];
         
         self.resData = (NSData *)mData;
-//        NSLog(@"resData == %@",self.resData);
+        //        NSLog(@"resData == %@",self.resData);
     }
     
     return self;

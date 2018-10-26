@@ -61,7 +61,6 @@
 {
     self = [super init];
     if (self) {
-        [self startConnection];
         _peerAddressArray = [NSMutableArray arrayWithCapacity:12];
         _peerList = [NSMutableArray arrayWithCapacity:12];
     }
@@ -254,18 +253,21 @@
  */
 -(void)sendVersionMessageToZeroPoint{
     WeakSelf
+    NSLog(@"start VersionMessage");
     VersionMessage * ver = [MsgVersion creatVersionMessage];
     [[BCNetWorking shared] sendVersionMessageWith:ver andToHost:ZeroPointHost and:^(GPBMessage *receiveMsg, NSError *error) {
         if (!error) {
-            NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-            [us setValue:@"YES" forKey:Networkstate];
-            [us synchronize];
+            //            NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
+            //            [us setValue:@"YES" forKey:Networkstate];
+            //            [us synchronize];
+            NSLog(@"VersionMessage recive");
             [weakSelf sendDiscoverToZeroPoint];
             [weakSelf startNetConnHeartbeat];
             if(self.delegate){
                 [self.delegate netConnNode:self DidStart:YES];
             }
         }else{
+            NSLog(@"VersionMessage timeout");
             if(self.delegate){
                 [self.delegate netConnNode:self DidStart:NO];
             }
@@ -278,8 +280,10 @@
  */
 -(void)sendDiscoverToZeroPoint{
     WeakSelf
+    NSLog(@"start DiscoverMessage");
     [[BCNetWorking shared] sendDiscoverMessageWith:[MsgDiscover creatDiscoverMessage] andToHost:ZeroPointHost and:^(GPBMessage *receiveMsg, NSError *error) {
         if (!error) {
+            NSLog(@"DiscoverMessage recive");
             DiscoverReplyMessage * replay = (DiscoverReplyMessage *)receiveMsg;
             [weakSelf setPeerAddressArray:replay.peerAddressArray];
             
@@ -287,6 +291,7 @@
                 [weakSelf.delegate netConnNode:self DidStart:YES];
             }
         }else{
+            NSLog(@"DiscoverMessage timeout");
             if([weakSelf.delegate respondsToSelector:@selector(netConnNode:DidStart:)]){
                 [weakSelf.delegate netConnNode:self DidStart:NO];
             }
