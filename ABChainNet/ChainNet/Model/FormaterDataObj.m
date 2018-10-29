@@ -89,9 +89,9 @@
         self.magic = [NSData convertHexStrToData:MagicStr];
         self.command = [self commandWithclassKind:msgObj];
         
-//        if ([self.command isEqualToString:@"discover"]) {
-//            NSLog(@"self.command");
-//        }
+        //        if ([self.command isEqualToString:@"discover"]) {
+        //            NSLog(@"self.command");
+        //        }
         self.size =  (int)[orgData length];
         self.checksum = [NetEncrypt sha256DataTwiceKey:orgData];
         self.payload = msgObj;
@@ -146,7 +146,8 @@
                       @"PongMessage":@"pong",
                       @"FindMessage":@"find",
                       @"FindAckMessage":@"findack",
-                      @"Transaction":@"transMsg"
+                      @"Transaction":@"transMsg",
+                      @"IMMessage":@"imMsg"
                       };
     }
     return _classMap;

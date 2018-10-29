@@ -127,6 +127,56 @@ typedef GPB_ENUM(VersionMessage_FieldNumber) {
 
 @end
 
+#pragma mark - IMMessage
+
+typedef GPB_ENUM(IMMessage_FieldNumber) {
+  IMMessage_FieldNumber_Timestamp = 1,
+  IMMessage_FieldNumber_Minimum = 2,
+  IMMessage_FieldNumber_MessageId = 3,
+  IMMessage_FieldNumber_ReplyId = 4,
+  IMMessage_FieldNumber_Version = 5,
+  IMMessage_FieldNumber_Services = 6,
+  IMMessage_FieldNumber_SubVer = 7,
+  IMMessage_FieldNumber_Id_p = 8,
+  IMMessage_FieldNumber_Imjson = 9,
+};
+
+@interface IMMessage : GPBMessage
+
+@property(nonatomic, readwrite) int64_t timestamp;
+
+@property(nonatomic, readwrite) BOOL hasTimestamp;
+@property(nonatomic, readwrite) int32_t minimum;
+
+@property(nonatomic, readwrite) BOOL hasMinimum;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *messageId;
+/** Test to see if @c messageId has been set. */
+@property(nonatomic, readwrite) BOOL hasMessageId;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *replyId;
+/** Test to see if @c replyId has been set. */
+@property(nonatomic, readwrite) BOOL hasReplyId;
+
+@property(nonatomic, readwrite) int32_t version;
+
+@property(nonatomic, readwrite) BOOL hasVersion;
+@property(nonatomic, readwrite) int64_t services;
+
+@property(nonatomic, readwrite) BOOL hasServices;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *subVer;
+/** Test to see if @c subVer has been set. */
+@property(nonatomic, readwrite) BOOL hasSubVer;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *id_p;
+/** Test to see if @c id_p has been set. */
+@property(nonatomic, readwrite) BOOL hasId_p;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *imjson;
+/** Test to see if @c imjson has been set. */
+@property(nonatomic, readwrite) BOOL hasImjson;
+
+@end
+
 #pragma mark - DiscoverMessage
 
 typedef GPB_ENUM(DiscoverMessage_FieldNumber) {

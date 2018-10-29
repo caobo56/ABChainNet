@@ -111,7 +111,6 @@
         if (!error) {
             DiscoverReplyMessage * replay = (DiscoverReplyMessage *)receiveMsg;
             [weakSelf setPeerAddressArray:replay.peerAddressArray];
-            
             if(block){
                 block(weakSelf.peerAddressArray,nil);
             }
@@ -124,6 +123,15 @@
 }
 
 #pragma mark - SendTranstion
+
+-(void)sendTranstionWithUserInfo:(NSDictionary *)userInfo andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block{
+    Transaction * trans = [MsgTransaction creatTransactionMessageWithUseInfo:userInfo andScriptBytes:scriptBytes];
+    NSLog(@"trans == %@",trans);
+    for (DiscoverReplyMessage_PeerAddress * peer in _peerList) {
+        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:peer.ip and:nil];
+    }
+    block(@"消息已经广播完成！",nil);
+}
 
 -(void)sendTranstionWith:(NSString *)faceID andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block{
     Transaction * trans = [MsgTransaction creatTransactionMessageWith:faceID andScriptBytes:scriptBytes];

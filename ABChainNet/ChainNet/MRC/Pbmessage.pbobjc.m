@@ -13,7 +13,9 @@
  #import "GPBProtocolBuffers_RuntimeSupport.h"
 #endif
 
- #import "Pbmessage.pbobjc.h"
+#import <stdatomic.h>
+
+#import "Pbmessage.pbobjc.h"
 // @@protoc_insertion_point(imports)
 
 #pragma clang diagnostic push
@@ -168,6 +170,142 @@ typedef struct VersionMessage__storage_ {
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
         "\004\003\t\000\004\007\000\007\006\000\t\010A\000";
+    [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
+#endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - IMMessage
+
+@implementation IMMessage
+
+@dynamic hasTimestamp, timestamp;
+@dynamic hasMinimum, minimum;
+@dynamic hasMessageId, messageId;
+@dynamic hasReplyId, replyId;
+@dynamic hasVersion, version;
+@dynamic hasServices, services;
+@dynamic hasSubVer, subVer;
+@dynamic hasId_p, id_p;
+@dynamic hasImjson, imjson;
+
+typedef struct IMMessage__storage_ {
+  uint32_t _has_storage_[1];
+  int32_t minimum;
+  int32_t version;
+  NSString *messageId;
+  NSString *replyId;
+  NSString *subVer;
+  NSString *id_p;
+  NSString *imjson;
+  int64_t timestamp;
+  int64_t services;
+} IMMessage__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "timestamp",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_Timestamp,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, timestamp),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeInt64,
+      },
+      {
+        .name = "minimum",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_Minimum,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, minimum),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeInt32,
+      },
+      {
+        .name = "messageId",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_MessageId,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, messageId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "replyId",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_ReplyId,
+        .hasIndex = 3,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, replyId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "version",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_Version,
+        .hasIndex = 4,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, version),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeInt32,
+      },
+      {
+        .name = "services",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_Services,
+        .hasIndex = 5,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, services),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeInt64,
+      },
+      {
+        .name = "subVer",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_SubVer,
+        .hasIndex = 6,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, subVer),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "id_p",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_Id_p,
+        .hasIndex = 7,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, id_p),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "imjson",
+        .dataTypeSpecific.className = NULL,
+        .number = IMMessage_FieldNumber_Imjson,
+        .hasIndex = 8,
+        .offset = (uint32_t)offsetof(IMMessage__storage_, imjson),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[IMMessage class]
+                                     rootClass:[PbmessageRoot class]
+                                          file:PbmessageRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(IMMessage__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+#if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    static const char *extraTextFormatInfo =
+        "\004\003\t\000\004\007\000\007\006\000\tc\003\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
@@ -1534,7 +1672,7 @@ typedef struct Transaction_Inputs__storage_ {
 #pragma mark - Enum Transaction_Inputs_InputType
 
 GPBEnumDescriptor *Transaction_Inputs_InputType_EnumDescriptor(void) {
-  static GPBEnumDescriptor *descriptor = NULL;
+  static _Atomic(GPBEnumDescriptor*) descriptor = nil;
   if (!descriptor) {
     static const char *valueNames =
         "IssueType\000TradeType\000";
@@ -1548,7 +1686,8 @@ GPBEnumDescriptor *Transaction_Inputs_InputType_EnumDescriptor(void) {
                                            values:values
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
                                      enumVerifier:Transaction_Inputs_InputType_IsValidValue];
-    if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
+    GPBEnumDescriptor *expected = nil;
+    if (!atomic_compare_exchange_strong(&descriptor, &expected, worker)) {
       [worker release];
     }
   }
