@@ -51,13 +51,12 @@ typedef void(^NetConnNodeBlock)(id message,NSError * error);
 -(void)findFaceIDWith:(NSString *)faceID and:(NetConnNodeBlock)block;
 
 /**
- findHostWith
+ 用对方用的userAddress 查出对方用户目前在区块链上的Host
 
  @param userAddress userAddress userAddress
  @param block block 回调block函数
  */
 -(void)findHostWith:(NSString *)userAddress and:(NetConnNodeBlock)block;
-
 
 /**
  发送Transtion命令，创建由faceID生成一笔交易并广播

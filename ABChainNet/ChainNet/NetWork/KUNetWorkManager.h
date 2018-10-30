@@ -25,7 +25,7 @@
  @param data data 本次manager对象收到的数据
  @param host host 本次manager消息对方的host
  */
--(void)netWorkManager:(KUNetWorkManager *)manager didReciveMsg:(NSData *)data from:(NSString *)host;
+-(void)netWorkManager:(KUNetWorkManager *)manager didReciveMsg:(NSData *)data from:(NSString *)host andPort:(int)port;
 
 /**
  netWorkManager isBusyWithHost

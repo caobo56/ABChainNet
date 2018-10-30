@@ -16,6 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(IMMessage *)creatFindIMMessage:(NSString *)userAddress;
 
+
++(NSString *)convertToJsonData:(NSDictionary *)dict;
+
++ (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -105,7 +105,7 @@
 
 #pragma mark - KcpOnUdp delegate
 - (void)kcpOnUdp:(KcpOnUdpObj *)kcpPoint didReciveMsg:(NSData *)data {
-    [_delegate netWorkManager:self didReciveMsg:data from:[kcpPoint.c_host copy]];
+    [_delegate netWorkManager:self didReciveMsg:data from:[kcpPoint.c_host copy] andPort:kcpPoint.c_port];
 }
 
 - (void)kcpOnUdp:(KcpOnUdpObj *)kcpPoint didSendWithMsg:(NSData *)data toHost:(NSString *)host port:(int)port tag:(int)tag {

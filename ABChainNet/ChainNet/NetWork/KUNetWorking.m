@@ -104,8 +104,10 @@
  
  @param msg 消息结构体
  @param msgId msgId 消息ID
+ @param host host 发送方地址
+ @param port port 发送方端口
  */
--(void)receiveMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId{
+-(void)receiveMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId from:(NSString *)host andPort:(int)port{
     
 }
 
@@ -115,7 +117,7 @@
 }
 
 #pragma mark - NetWorkManagerDelegate
-- (void)netWorkManager:(KUNetWorkManager *)manager didReciveMsg:(NSData *)data from:(NSString *)host{
+- (void)netWorkManager:(KUNetWorkManager *)manager didReciveMsg:(NSData *)data from:(NSString *)host andPort:(int)port{
     FormaterDataObj * fmt = [[FormaterDataObj alloc]initFromData:data];
     if(fmt.payload){
         BasicMsgModel * msgModel = [BasicMsgModel creatWith:fmt andHost:host andDelegate:self];
@@ -132,7 +134,7 @@
 //                NSLog(@"self.blockMap = %@",self.blockMap);
             }
         }else{
-            [self receiveMessageWith:fmt.payload andMsgId:msgModel.messageId];
+            [self receiveMessageWith:fmt.payload andMsgId:msgModel.messageId from:host andPort:port];
         }
     }else{
         //        NSLog(@"返回数据解析异常！");

@@ -89,10 +89,18 @@
  
  @param msg 消息结构体
  @param msgId msgId 消息ID
+ @param host host 发送方地址
+ @param port port 发送方端口
  */
--(void)receiveMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId{
+-(void)receiveMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId from:(NSString *)host andPort:(int)port{
     if ([msg isKindOfClass:[IMMessage class]]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:IMMessageNotification object:msg];        
+        NSDictionary * dict = @{
+                                @"msg":(IMMessage *)msg,
+                                @"msgId":msgId,
+                                @"host":host,
+                                @"port":@(port)
+                                };
+        [[NSNotificationCenter defaultCenter] postNotificationName:IMMessageNotification object:dict];
     }
 }
 

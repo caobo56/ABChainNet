@@ -193,9 +193,6 @@
     }
 }
 
-
-
-
 /**
  向维持心跳的节点列表，广播find消息，并执行block。
  
@@ -255,10 +252,15 @@
 }
 
 
-
+/**
+ 用对方用的userAddress 查出对方用户目前在区块链上的Host
+ 
+ @param userAddress userAddress userAddress
+ @param block block 回调block函数
+ */
 -(void)findHostWith:(NSString *)userAddress and:(NetConnNodeBlock)block{
-    NSMutableArray<Transaction *> * transArr = [NSMutableArray arrayWithCapacity:12];
-    __block NSMutableArray<Transaction *> * blk_transArr = transArr;
+    NSString * aimHost = @"";
+    __block NSString * blk_aimHost = aimHost;
     int allCount = 0;
     int timeoutCount = 0;
     int emptyCount = 0;
@@ -269,7 +271,8 @@
     for(DiscoverReplyMessage_PeerAddress * peer in _peerList){
         [self circulationFindHostWith:userAddress and:peer and:^(id message, NSError *error) {
             if (!error) {
-                [blk_transArr addObject:message];
+                blk_aimHost = [(NSString *)message copy];
+                block(blk_aimHost,nil);
             }else if (error.code == KUFindEmpty){
                 blk_emptyCount++;
             }else if (error.code == KUFindTimeOut){
@@ -277,13 +280,17 @@
             }
             blk_allCount++;
             if (blk_allCount == weakSelf.peerList.count) {
-                NSDictionary * dict = @{
-                                        @"allCount":@(blk_allCount),
-                                        @"timeoutCount":@(blk_timeoutCount),
-                                        @"emptyCount":@(blk_emptyCount),
-                                        @"trans":blk_transArr
-                                        };
-                block(dict,nil);
+                if ([blk_aimHost isEqualToString:@""]) {
+                    NSDictionary * dict = @{
+                                            @"allCount":@(blk_allCount),
+                                            @"timeoutCount":@(blk_timeoutCount),
+                                            @"emptyCount":@(blk_emptyCount),
+                                            @"msg":@"未查到对应的用户"
+                                            };
+                    if (block) {
+                        block(dict,nil);
+                    }
+                }
             }
         }];
     }
@@ -294,10 +301,11 @@
     __block NSString * blockUserAddress = userAddress;
     IMMessage * im = [MsgIM creatFindIMMessage:userAddress];
     WeakSelf
+    __block DiscoverReplyMessage_PeerAddress * blkPeer = peer;
     [[BCNetWorking shared] sendIMMessageWith:im andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
         if (!error) {
             IMMessage * replay = (IMMessage *)receiveMsg;
-            NSString * host = [weakSelf checkIMMessageForHost:replay andCondition:blockUserAddress];
+            NSString * host = [weakSelf checkIMMessageForHost:replay andCondition:blockUserAddress andToHost:blkPeer.ip];
             if (host) {
                 block(host,nil);
             }else{
@@ -314,9 +322,13 @@
 }
 
 -(NSString *)checkIMMessageForHost:(IMMessage *)replay
-                      andCondition:(NSString *)condition{
-    if (replay.imjson) {
-        
+                      andCondition:(NSString *)condition
+                         andToHost:(NSString *)host{
+    NSDictionary * dict = [MsgIM dictionaryWithJsonString:replay.imjson];
+    if ([[dict valueForKey:@"msgType"] isEqualToString:@"msgType"]) {
+        if ([[dict valueForKey:@"msg"] isEqualToString:condition]) {
+            return host;
+        }
     }
     return nil;
 }
@@ -335,9 +347,6 @@
     VersionMessage * ver = [MsgVersion creatVersionMessage];
     [[BCNetWorking shared] sendVersionMessageWith:ver andToHost:ZeroPointHost and:^(GPBMessage *receiveMsg, NSError *error) {
         if (!error) {
-            //            NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-            //            [us setValue:@"YES" forKey:Networkstate];
-            //            [us synchronize];
             NSLog(@"VersionMessage recive");
             [weakSelf sendDiscoverToZeroPoint];
             [weakSelf startNetConnHeartbeat];
