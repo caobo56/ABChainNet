@@ -41,4 +41,12 @@
 -(void)sendMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId andToHost:(NSString *)host and:(BCNetWorkingCallBack)block;
 
 
+/**
+ 数据接收接口
+
+ @param msg 消息结构体
+ @param msgId msgId 消息ID
+ */
+-(void)receiveMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId;
+
 @end

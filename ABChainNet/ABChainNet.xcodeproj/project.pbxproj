@@ -16,6 +16,7 @@
 		A83414EB20E5BB4A006EC41F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A83414EA20E5BB4A006EC41F /* main.m */; };
 		A83414F520E5BB4A006EC41F /* ABChainNetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A83414F420E5BB4A006EC41F /* ABChainNetTests.m */; };
 		A834150020E5BB4A006EC41F /* ABChainNetUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A83414FF20E5BB4A006EC41F /* ABChainNetUITests.m */; };
+		A8762AA12186CDDD00F0F6DE /* MsgIM.m in Sources */ = {isa = PBXBuildFile; fileRef = A8762AA02186CDDD00F0F6DE /* MsgIM.m */; };
 		A89582E520E5C51100475318 /* Pbmessage.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A89582E320E5C51100475318 /* Pbmessage.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A895836420E5C57A00475318 /* BCNetWorkingHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = A895833220E5C57A00475318 /* BCNetWorkingHandle.m */; };
 		A895836520E5C57A00475318 /* MsgVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = A895833320E5C57A00475318 /* MsgVersion.m */; };
@@ -79,6 +80,8 @@
 		A83414FB20E5BB4A006EC41F /* ABChainNetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ABChainNetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A83414FF20E5BB4A006EC41F /* ABChainNetUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ABChainNetUITests.m; sourceTree = "<group>"; };
 		A834150120E5BB4A006EC41F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8762A9F2186CDDD00F0F6DE /* MsgIM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgIM.h; sourceTree = "<group>"; };
+		A8762AA02186CDDD00F0F6DE /* MsgIM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MsgIM.m; sourceTree = "<group>"; };
 		A89582E320E5C51100475318 /* Pbmessage.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pbmessage.pbobjc.m; sourceTree = "<group>"; };
 		A89582E420E5C51100475318 /* Pbmessage.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pbmessage.pbobjc.h; sourceTree = "<group>"; };
 		A895833220E5C57A00475318 /* BCNetWorkingHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCNetWorkingHandle.m; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				A895834420E5C57A00475318 /* MsgTransaction.m */,
 				A895833F20E5C57A00475318 /* MsgVersion.h */,
 				A895833320E5C57A00475318 /* MsgVersion.m */,
+				A8762A9F2186CDDD00F0F6DE /* MsgIM.h */,
+				A8762AA02186CDDD00F0F6DE /* MsgIM.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 				A895836920E5C57A00475318 /* BasicMsgModel.m in Sources */,
 				A895837A20E5C57A00475318 /* BCNetWorking.m in Sources */,
 				A895836420E5C57A00475318 /* BCNetWorkingHandle.m in Sources */,
+				A8762AA12186CDDD00F0F6DE /* MsgIM.m in Sources */,
 				A895837820E5C57A00475318 /* KUKcpOnUdp.m in Sources */,
 				A895837020E5C57A00475318 /* NetEncrypt.m in Sources */,
 				A89582E520E5C51100475318 /* Pbmessage.pbobjc.m in Sources */,

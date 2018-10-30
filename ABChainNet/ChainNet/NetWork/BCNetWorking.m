@@ -61,6 +61,17 @@
 }
 
 /**
+ sendIMMessage
+ 
+ @param imMsg imMsg im消息
+ @param host host IP地址
+ @param block block 回调函数
+ */
+-(void)sendIMMessageWith:(IMMessage *)imMsg andToHost:(NSString *)host and:(BCNetWorkingCallBack)block{
+    [self sendMessageWith:imMsg andMsgId:imMsg.messageId andToHost:host and:block];
+}
+
+/**
  sendTransaction
  
  @param trans trans 要广播的交易
@@ -69,6 +80,20 @@
  */
 -(void)sendTransactionMessageWith:(Transaction *)trans andToHost:(NSString *)host and:(BCNetWorkingCallBack)block{
     [self sendMessageWith:trans andMsgId:trans.messageId andToHost:host and:block];
+}
+
+
+#pragma mark - receiveMessage
+/**
+ 数据接收接口
+ 
+ @param msg 消息结构体
+ @param msgId msgId 消息ID
+ */
+-(void)receiveMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId{
+    if ([msg isKindOfClass:[IMMessage class]]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:IMMessageNotification object:msg];        
+    }
 }
 
 @end

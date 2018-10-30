@@ -55,6 +55,15 @@
  */
 -(void)sendFindMessageWith:(FindMessage *)findMsg andToHost:(NSString *)host and:(BCNetWorkingCallBack)block;
 
+/**
+ sendIMMessage
+ 
+ @param imMsg imMsg im消息
+ @param host host IP地址
+ @param block block 回调函数
+ */
+-(void)sendIMMessageWith:(IMMessage *)imMsg andToHost:(NSString *)host and:(BCNetWorkingCallBack)block;
+
 
 /**
  sendTransaction

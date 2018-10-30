@@ -19,6 +19,7 @@
 #import "MsgDiscover.h"
 #import "MsgFind.h"
 #import "MsgTransaction.h"
+#import "MsgIM.h"
 
 #import <NSBencodeSerialization.h>
 
@@ -192,6 +193,9 @@
     }
 }
 
+
+
+
 /**
  向维持心跳的节点列表，广播find消息，并执行block。
  
@@ -222,7 +226,6 @@
     }];
 }
 
-
 /**
  checkFindAckMessage
  
@@ -249,6 +252,73 @@
         }
     }
     return trans;
+}
+
+
+
+-(void)findHostWith:(NSString *)userAddress and:(NetConnNodeBlock)block{
+    NSMutableArray<Transaction *> * transArr = [NSMutableArray arrayWithCapacity:12];
+    __block NSMutableArray<Transaction *> * blk_transArr = transArr;
+    int allCount = 0;
+    int timeoutCount = 0;
+    int emptyCount = 0;
+    __block int blk_allCount = allCount;
+    __block int blk_timeoutCount = timeoutCount;
+    __block int blk_emptyCount = emptyCount;
+    WeakSelf
+    for(DiscoverReplyMessage_PeerAddress * peer in _peerList){
+        [self circulationFindHostWith:userAddress and:peer and:^(id message, NSError *error) {
+            if (!error) {
+                [blk_transArr addObject:message];
+            }else if (error.code == KUFindEmpty){
+                blk_emptyCount++;
+            }else if (error.code == KUFindTimeOut){
+                blk_timeoutCount++;
+            }
+            blk_allCount++;
+            if (blk_allCount == weakSelf.peerList.count) {
+                NSDictionary * dict = @{
+                                        @"allCount":@(blk_allCount),
+                                        @"timeoutCount":@(blk_timeoutCount),
+                                        @"emptyCount":@(blk_emptyCount),
+                                        @"trans":blk_transArr
+                                        };
+                block(dict,nil);
+            }
+        }];
+    }
+}
+
+
+-(void)circulationFindHostWith:(NSString *)userAddress and:(DiscoverReplyMessage_PeerAddress *)peer and:(NetConnNodeBlock)block{
+    __block NSString * blockUserAddress = userAddress;
+    IMMessage * im = [MsgIM creatFindIMMessage:userAddress];
+    WeakSelf
+    [[BCNetWorking shared] sendIMMessageWith:im andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
+        if (!error) {
+            IMMessage * replay = (IMMessage *)receiveMsg;
+            NSString * host = [weakSelf checkIMMessageForHost:replay andCondition:blockUserAddress];
+            if (host) {
+                block(host,nil);
+            }else{
+                block(nil,Ferror(KUFindEmpty,@"未查询到相关结果！"));
+            }
+        }else{
+            if (error.code == KUNetTimeOut) {
+                block(nil,Ferror(KUFindTimeOut,@"find超时！"));
+            }else{
+                block(nil,error);
+            }
+        }
+    }];
+}
+
+-(NSString *)checkIMMessageForHost:(IMMessage *)replay
+                      andCondition:(NSString *)condition{
+    if (replay.imjson) {
+        
+    }
+    return nil;
 }
 
 #pragma mark - StartConnect

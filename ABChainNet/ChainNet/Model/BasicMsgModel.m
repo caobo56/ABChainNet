@@ -37,7 +37,8 @@
                             @"discover":@"MsgDiscover",
                             @"discReply":@"MsgDiscReply",
                             @"find":@"MsgFind",
-                            @"findack":@"MsgFindAck"
+                            @"findack":@"MsgFindAck",
+                            @"imMsg":@"MsgIM"
                             };
     NSString * className = [[dict objectForKey:command] copy];
     return className;

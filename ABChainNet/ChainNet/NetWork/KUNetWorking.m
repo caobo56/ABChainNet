@@ -98,6 +98,17 @@
     }
 }
 
+#pragma mark - receiveMessage
+/**
+ 数据接收接口
+ 
+ @param msg 消息结构体
+ @param msgId msgId 消息ID
+ */
+-(void)receiveMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId{
+    
+}
+
 #pragma mark - BasicMsgModelDelegate
 -(void)msgModel:(BasicMsgModel *)msgModel didSendMsg:(NSData *)data from:(NSString *)host{
     [_netWorkManager sendMsg:data toHost:host toPort:DefaultPort];
@@ -120,6 +131,8 @@
                 [self.blockMap removeObjectForKey:msgModel.responseId];
 //                NSLog(@"self.blockMap = %@",self.blockMap);
             }
+        }else{
+            [self receiveMessageWith:fmt.payload andMsgId:msgModel.messageId];
         }
     }else{
         //        NSLog(@"返回数据解析异常！");
