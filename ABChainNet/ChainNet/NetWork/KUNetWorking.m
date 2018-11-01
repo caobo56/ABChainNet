@@ -11,6 +11,7 @@
 #import "FormaterDataObj.h"
 #import "BasicMsgModel.h"
 #import "KcpOnUdpObj.h"
+#import "MsgIM.h"
 
 #import "NSData+UTF8.h"
 #import "NSDate+Timestamp.h"
@@ -23,9 +24,20 @@
 @property (nonatomic,strong)KUNetWorkManager * netWorkManager;
 
 @end
-
 @implementation KUNetWorking
 
+
+static KUNetWorking *DefaultManager = nil;
+
++ (instancetype)sharedManager
+{
+    static KUNetWorking *sharedManagerInstance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        sharedManagerInstance = [[self alloc] init];
+    });
+    return sharedManagerInstance;
+}
 
 + (instancetype)sharedWithPort:(int)port{
     static KUNetWorking *netWorking = nil;
@@ -63,7 +75,6 @@
 //    NSLog(@"msgId == %@,class = %@",msgId,msg);
     if (msg) {
         FormaterDataObj * fmt = [[FormaterDataObj alloc]initWithObj:msg];
-//        NSLog(@"fmt.resData = %@",fmt.resData);
         [_netWorkManager sendMsg:fmt.resData toHost:host toPort:DefaultPort];
         if (!msgId) {
             if (block) {
@@ -78,8 +89,8 @@
                 __weak __typeof(self)weakSelf = self;
                 handle.timeoutComp = ^(NSString *msgID) {
                     BCNetWorkingHandle * handleInMap = [weakSelf.blockMap objectForKey:msgID];
-//                     NSLog(@"有超时消息，msgID == %@",msgID);
                     if (handleInMap) {
+                        NSLog(@"有超时消息，msgID == %@",msgID);
                         dispatch_async(dispatch_get_main_queue(), ^{
                             handleInMap.comp(nil,error(KUNetTimeOut));
                         });
@@ -108,7 +119,6 @@
  @param port port 发送方端口
  */
 -(void)receiveMessageWith:(GPBMessage *)msg andMsgId:(NSString *)msgId from:(NSString *)host andPort:(int)port{
-    
 }
 
 #pragma mark - BasicMsgModelDelegate
@@ -121,7 +131,11 @@
     FormaterDataObj * fmt = [[FormaterDataObj alloc]initFromData:data];
     if(fmt.payload){
         BasicMsgModel * msgModel = [BasicMsgModel creatWith:fmt andHost:host andDelegate:self];
-        if (msgModel.responseId) {
+        if ([msgModel isKindOfClass:[MsgIM class]]) {
+            NSLog(@"msgModel class %@",[msgModel class]);
+            [self receiveMessageWith:fmt.payload andMsgId:msgModel.messageId from:host andPort:port];
+        }
+        if (![msgModel.responseId isEqualToString:@""]) {
             BCNetWorkingHandle * handle = [self.blockMap objectForKey:msgModel.responseId];
             if (handle && handle.type == HandleTypeNO) {
                 handle.type = HandleTypeYES;
@@ -134,7 +148,7 @@
 //                NSLog(@"self.blockMap = %@",self.blockMap);
             }
         }else{
-            [self receiveMessageWith:fmt.payload andMsgId:msgModel.messageId from:host andPort:port];
+
         }
     }else{
         //        NSLog(@"返回数据解析异常！");

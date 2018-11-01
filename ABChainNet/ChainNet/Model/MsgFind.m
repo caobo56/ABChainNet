@@ -52,6 +52,41 @@
     return find;
 }
 
+
+
++(FindMessage *)creatFindMessageWithUserAddress:(NSString *)userAddress
+                                   andPeer:(DiscoverReplyMessage_PeerAddress *)peer{
+    FindMessage * find = [[FindMessage alloc]init];
+    find.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
+    find.messageId = [NSDate getDateTimeToMilliSecondsStr:[NSDate new]];
+    find.replyId = @"";
+    
+    FindMessage_ReqAddress * reqAddress = [[FindMessage_ReqAddress alloc]init];
+    NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
+    reqAddress.ip = [us valueForKey:@"divice_host"];
+    reqAddress.port = [[us valueForKey:@"divice_port"] intValue];
+    find.reqAddress = reqAddress;
+    
+    find.reqId = [us valueForKey:@"divice_ID"];
+    
+    FindMessage_AimAddress * aimAddress = [[FindMessage_AimAddress alloc]init];
+    aimAddress.ip = peer.ip;
+    aimAddress.port = peer.port;
+    find.aimAddress = aimAddress;
+    
+    find.resourceType = GetFINDTYPE(FIND_TRANS);
+    
+    NSDictionary * dict = @{@"userAddress":userAddress};
+    
+    NSError * error;
+    find.condition = [NSBencodeSerialization dataWithBencodedObject:dict error:&error];
+    if (error) {
+        return nil;
+    }
+    return find;
+}
+
+
 - (instancetype)initWith:(FormaterDataObj *)obj andDelegate:(id)delegate
 {
     self = [super initWith:obj andDelegate:delegate];
@@ -75,7 +110,15 @@
         super.messageId = vmsg.messageId;
         super.payload = fmt.payload;
     }
-//    NSLog(@"payload == %@",self.payload);
+    NSLog(@"payload == %@",self.payload);
+    FindAckMessage * findack = (FindAckMessage *)super.payload;
+    
+    FormaterDataObj * fmtReturn = [[FormaterDataObj alloc]initWithObj:findack];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(msgModel:didSendMsg:from:)]) {
+        [super.delegate msgModel:self didSendMsg:fmtReturn.resData from:self.host];
+    }
+    
 }
 
 NSString *GetFINDTYPE(FINDTYPE status) {

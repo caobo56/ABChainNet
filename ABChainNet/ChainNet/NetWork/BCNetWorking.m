@@ -13,7 +13,7 @@
 #pragma mark - public Method
 
 + (instancetype)shared{
-    return [BCNetWorking sharedWithPort:DefaultPort];
+    return [BCNetWorking sharedManager];
 }
 
 /**

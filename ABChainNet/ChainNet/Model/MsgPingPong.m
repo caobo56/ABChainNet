@@ -11,7 +11,6 @@
 
 @interface MsgPing()
 
-
 @end
 
 @implementation MsgPing

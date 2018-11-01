@@ -23,6 +23,7 @@
  */
 @interface KUNetWorking : NSObject
 
++ (instancetype)sharedManager;
 /**
  单例
  

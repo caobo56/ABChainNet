@@ -27,6 +27,8 @@ typedef NS_ENUM(NSInteger, FINDTYPE) {
 +(FindMessage *)creatFindMessageWithFaceID:(NSString *)faceID
                                    andPeer:(DiscoverReplyMessage_PeerAddress *)peer;
 
++(FindMessage *)creatFindMessageWithUserAddress:(NSString *)UserAddress
+                                        andPeer:(DiscoverReplyMessage_PeerAddress *)peer;
 @end
 
 

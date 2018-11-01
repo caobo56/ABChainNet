@@ -13,6 +13,23 @@
 
 +(Transaction *)creatTransactionMessageWith:(NSString *)faceID andScriptBytes:(NSData *)scriptBytes;
 
+/**
+ //用户昵称，用户FaceID 的用户注册
+
+ @param useInfo useInfo description
+ @param scriptBytes scriptBytes description
+ @return return value description
+ */
 +(Transaction *)creatTransactionMessageWithUseInfo:(NSDictionary *)useInfo andScriptBytes:(NSData *)scriptBytes;
+
+
+/**
+ //用户昵称，用户FaceID，用户addressID的用户注册
+
+ @param useInfo useInfo description
+ @param scriptBytes scriptBytes description
+ @return return value description
+ */
++(Transaction *)creatTransactionMessageWithUserInfo:(NSDictionary *)useInfo andScriptBytes:(NSData *)scriptBytes;
 
 @end
