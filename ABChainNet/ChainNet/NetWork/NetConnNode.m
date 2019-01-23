@@ -144,6 +144,16 @@ static NetConnNode * nodeConn = nil;
 }
 
 
+-(void)sendTranstionWithFileInfo:(NSDictionary *)fileInfo andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block{
+    Transaction * trans = [MsgTransaction creatTransactionMessageWithFileInfo:fileInfo andScriptBytes:scriptBytes];
+    NSLog(@"trans == %@",trans);
+    for (DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray) {
+        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:peer.ip and:nil];
+    }
+    block(@"消息已经广播完成！",nil);
+}
+
+
 -(void)sendTranstionWith:(Transaction *)trans With:(NetConnNodeBlock)block{
     for (DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray) {
         [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:peer.ip and:nil];
@@ -251,6 +261,9 @@ static NetConnNode * nodeConn = nil;
     return trans;
 }
 
+
+#pragma mark - findUserAddress
+
 /**
  发送find命令
  
@@ -258,36 +271,31 @@ static NetConnNode * nodeConn = nil;
  @param block block 回调block函数
  */
 -(void)findUserAddressWith:(NSString *)userAddress and:(NetConnNodeBlock)block{
-    NSMutableArray<Transaction *> * transArr = [NSMutableArray arrayWithCapacity:12];
-    __block NSMutableArray<Transaction *> * blk_transArr = transArr;
-    int allCount = 0;
-    int timeoutCount = 0;
-    int emptyCount = 0;
-    __block int blk_allCount = allCount;
-    __block int blk_timeoutCount = timeoutCount;
-    __block int blk_emptyCount = emptyCount;
+    DiscoverReplyMessage_PeerAddress * peer = [[DiscoverReplyMessage_PeerAddress alloc]init];
+    peer.ip = ZeroPointHost;
+    peer.port = DefaultPort;
+    __block NSString * blockAddress = userAddress;
+
+    FindMessage * find = [MsgFind creatFindMessageWithUserAddress:userAddress andPeer:peer];
     WeakSelf
-    for(DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray){
-        [self circulationFindUserAddressWith:userAddress and:peer and:^(id message, NSError *error) {
-            if (!error) {
-                [blk_transArr addObject:message];
-            }else if (error.code == KUFindEmpty){
-                blk_emptyCount++;
-            }else if (error.code == KUFindTimeOut){
-                blk_timeoutCount++;
+    [[BCNetWorking shared] sendFindMessageWith:find andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
+        if (!error) {
+            FindAckMessage * replay = (FindAckMessage *)receiveMsg;
+            Transaction * trans = [weakSelf checkFindAckMessage:replay andUserAddress:blockAddress];
+            if (trans) {
+                block(trans,nil);
+            }else{
+                block(nil,Ferror(KUFindEmpty,@"未查询到相关结果！"));
             }
-            blk_allCount++;
-            if (blk_allCount == weakSelf.peerAddressArray.count) {
-                NSDictionary * dict = @{
-                                        @"allCount":@(blk_allCount),
-                                        @"timeoutCount":@(blk_timeoutCount),
-                                        @"emptyCount":@(blk_emptyCount),
-                                        @"trans":blk_transArr
-                                        };
-                block(dict,nil);
+        }else{
+            if (error.code == KUNetTimeOut) {
+                block(nil,Ferror(KUFindTimeOut,@"find超时！"));
+            }else{
+                block(nil,error);
             }
-        }];
-    }
+        }
+    }];
+    
 }
 
 /**
@@ -348,72 +356,22 @@ static NetConnNode * nodeConn = nil;
     return trans;
 }
 
-/**
- 用对方用的userAddress 查出对方用户目前在区块链上的Host
- 
- @param userAddress userAddress userAddress
- @param block block 回调block函数
- */
--(void)findHostWith:(NSString *)userAddress and:(NetConnNodeBlock)block{
-    IMMessage * im = [MsgIM creatFindIMMessage:userAddress];
-//
-    [[BCNetWorking shared] sendIMMessageWith:im andToHost:@"10.10.116.26" and:^(id receiveMsg, NSError *error) {
-        NSLog(@"sendIMMessage Done");
-        if (!error) {
-            NSLog(@"receiveMsg host = %@",receiveMsg);
-        }
-    }];
-#warning findHostWith
-    return;
-    NSString * aimHost = @"";
-    __block NSString * blk_aimHost = aimHost;
-    int allCount = 0;
-    int timeoutCount = 0;
-    int emptyCount = 0;
-    __block int blk_allCount = allCount;
-    __block int blk_timeoutCount = timeoutCount;
-    __block int blk_emptyCount = emptyCount;
-    WeakSelf
-    for(DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray){
-        [self circulationFindHostWith:userAddress and:peer and:^(id message, NSError *error) {
-            if (!error) {
-                blk_aimHost = [(NSString *)message copy];
-                block(blk_aimHost,nil);
-            }else if (error.code == KUFindEmpty){
-                blk_emptyCount++;
-            }else if (error.code == KUFindTimeOut){
-                blk_timeoutCount++;
-            }
-            blk_allCount++;
-            if (blk_allCount == weakSelf.peerAddressArray.count) {
-                if ([blk_aimHost isEqualToString:@""]) {
-                    NSDictionary * dict = @{
-                                            @"allCount":@(blk_allCount),
-                                            @"timeoutCount":@(blk_timeoutCount),
-                                            @"emptyCount":@(blk_emptyCount),
-                                            @"msg":@"未查到对应的用户"
-                                            };
-                    if (block) {
-                        block(dict,nil);
-                    }
-                }
-            }
-        }];
-    }
-}
+#pragma mark - findFileInfos
 
+-(void)findFileInfosWith:(NSString *)userAddress and:(NetConnNodeBlock)block{
+    DiscoverReplyMessage_PeerAddress * peer = [[DiscoverReplyMessage_PeerAddress alloc]init];
+    peer.ip = ZeroPointHost;
+    peer.port = DefaultPort;
+    __block NSString * blockAddress = userAddress;
 
--(void)circulationFindHostWith:(NSString *)userAddress and:(DiscoverReplyMessage_PeerAddress *)peer and:(NetConnNodeBlock)block{
-    __block NSString * blockUserAddress = userAddress;
-    IMMessage * im = [MsgIM creatFindIMMessage:userAddress];
+    FindMessage * find = [MsgFind creatFindFileWithUserAddress:userAddress andPeer:peer];
     WeakSelf
-    __block DiscoverReplyMessage_PeerAddress * blkPeer = peer;
-    [[BCNetWorking shared] sendIMMessageWith:im andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
+    [[BCNetWorking shared] sendFindMessageWith:find andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
         if (!error) {
-            IMMessage * replay = (IMMessage *)receiveMsg;
-            NSString * host = [weakSelf checkIMMessageForHost:replay andCondition:blockUserAddress andToHost:blkPeer.ip];
-            if (host) {
-                block(host,nil);
+            FindAckMessage * replay = (FindAckMessage *)receiveMsg;
+            NSArray * trans = [weakSelf checkFileFindAckMessage:replay andUserAddress:blockAddress];
+            if (trans.count > 0) {
+                block(trans,nil);
             }else{
                 block(nil,Ferror(KUFindEmpty,@"未查询到相关结果！"));
             }
@@ -427,16 +385,21 @@ static NetConnNode * nodeConn = nil;
     }];
 }
 
--(NSString *)checkIMMessageForHost:(IMMessage *)replay
-                      andCondition:(NSString *)condition
-                         andToHost:(NSString *)host{
-    NSDictionary * dict = [MsgIM dictionaryWithJsonString:replay.imjson];
-    if ([[dict valueForKey:@"msgType"] isEqualToString:@"msgType"]) {
-        if ([[dict valueForKey:@"msg"] isEqualToString:condition]) {
-            return host;
+-(NSArray *)checkFileFindAckMessage:(FindAckMessage *)replay andUserAddress:(NSString *)address{
+    Transaction * trans = nil;
+    NSError * error;
+    NSArray * arr = [NSBencodeSerialization bencodedObjectWithData:replay.result.data_p error:&error];
+    NSMutableArray * marr = [NSMutableArray arrayWithCapacity:12];
+    if (!error && arr && arr.count > 0) {
+        for (NSData * data in arr) {
+            FormaterDataObj * obj = [[FormaterDataObj alloc]initFromData:data];
+            Transaction * trans_p = (Transaction *)obj.payload;
+            if (trans_p) {
+                [marr addObject:trans_p];
+            }
         }
     }
-    return nil;
+    return marr;
 }
 
 #pragma mark - StartConnect

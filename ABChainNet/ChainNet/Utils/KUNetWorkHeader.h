@@ -15,7 +15,9 @@ static NSString * IMMessageNotification = @"IMMessageNotification";
 
 static NSString * ZeroPointHost = @"10.10.103.76";
 static int DefaultPort = 9612;//网络层默认端口号
+//static NSString * ZeroPointHost = @"192.168.1.102";
 
+//局域网通零类节点IP
 static int Timeout = 10.0f;//超时时间，udp networkhandle
 
 static NSString *const MagicStr = @"f9beb4d9";//序列化层的魔术关键字，用于识别

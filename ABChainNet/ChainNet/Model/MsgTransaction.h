@@ -32,4 +32,15 @@
  */
 +(Transaction *)creatTransactionMessageWithUserInfo:(NSDictionary *)useInfo andScriptBytes:(NSData *)scriptBytes;
 
+
+/**
+ 文件交易
+
+ @param fileInfo fileInfo description
+ @param scriptBytes scriptBytes description
+ @return return value description
+ */
++(Transaction *)creatTransactionMessageWithFileInfo:(NSDictionary *)fileInfo andScriptBytes:(NSData *)scriptBytes;
+
+
 @end

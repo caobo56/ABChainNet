@@ -42,7 +42,10 @@
     
     find.resourceType = GetFINDTYPE(FIND_TRANS);
     
-    NSDictionary * dict = @{@"faceID":faceID};
+    NSDictionary * dict = @{
+                            @"faceID":faceID,
+                            @"_type":@"ID"
+                            };
     
     NSError * error;
     find.condition = [NSBencodeSerialization dataWithBencodedObject:dict error:&error];
@@ -76,7 +79,10 @@
     
     find.resourceType = GetFINDTYPE(FIND_TRANS);
     
-    NSDictionary * dict = @{@"userAddress":userAddress};
+    NSDictionary * dict = @{
+                            @"userAddress":userAddress,
+                            @"_type":@"ID"
+                            };
     
     NSError * error;
     find.condition = [NSBencodeSerialization dataWithBencodedObject:dict error:&error];
@@ -86,6 +92,41 @@
     return find;
 }
 
+
++(FindMessage *)creatFindFileWithUserAddress:(NSString *)userAddress
+                                     andPeer:(DiscoverReplyMessage_PeerAddress *)peer{
+    FindMessage * find = [[FindMessage alloc]init];
+    find.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
+    find.messageId = [NSDate getDateTimeToMilliSecondsStr:[NSDate new]];
+    find.replyId = @"";
+    
+    FindMessage_ReqAddress * reqAddress = [[FindMessage_ReqAddress alloc]init];
+    NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
+    reqAddress.ip = [us valueForKey:@"divice_host"];
+    reqAddress.port = [[us valueForKey:@"divice_port"] intValue];
+    find.reqAddress = reqAddress;
+    
+    find.reqId = [us valueForKey:@"divice_ID"];
+    
+    FindMessage_AimAddress * aimAddress = [[FindMessage_AimAddress alloc]init];
+    aimAddress.ip = peer.ip;
+    aimAddress.port = peer.port;
+    find.aimAddress = aimAddress;
+    
+    find.resourceType = GetFINDTYPE(FIND_TRANS);
+    
+    NSDictionary * dict = @{
+                            @"ownerAddress":userAddress,
+                            @"_type":@"FILE"
+                            };
+    
+    NSError * error;
+    find.condition = [NSBencodeSerialization dataWithBencodedObject:dict error:&error];
+    if (error) {
+        return nil;
+    }
+    return find;
+}
 
 - (instancetype)initWith:(FormaterDataObj *)obj andDelegate:(id)delegate
 {

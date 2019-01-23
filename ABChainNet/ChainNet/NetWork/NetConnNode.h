@@ -58,13 +58,11 @@ typedef void(^NetConnNodeBlock)(id message,NSError * error);
  */
 -(void)findUserAddressWith:(NSString *)userAddress and:(NetConnNodeBlock)block;
 
-/**
- 用对方用的userAddress 查出对方用户目前在区块链上的Host
 
- @param userAddress userAddress userAddress
- @param block block 回调block函数
- */
--(void)findHostWith:(NSString *)userAddress and:(NetConnNodeBlock)block;
+-(void)findFileInfosWith:(NSString *)userAddress and:(NetConnNodeBlock)block;
+
+
+
 
 /**
  发送Transtion命令，创建由faceID生成一笔交易并广播
@@ -84,6 +82,16 @@ typedef void(^NetConnNodeBlock)(id message,NSError * error);
  */
 -(void)sendTranstionWithUserInfo:(NSDictionary *)userInfo andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block;
 
+
+/**
+ 发送Transtion命令，创建由fileInfo生成一笔交易并广播
+
+ @param fileInfo fileInfo 文件信息
+ @param scriptBytes scriptBytes 交易的锁定脚本
+ @param block block 回调block函数
+ */
+-(void)sendTranstionWithFileInfo:(NSDictionary *)fileInfo andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block;
+
 /**
  发送Transtion命令
  
@@ -91,5 +99,7 @@ typedef void(^NetConnNodeBlock)(id message,NSError * error);
  @param block block 回调block函数
  */
 -(void)sendTranstionWith:(Transaction *)trans With:(NetConnNodeBlock)block;
+
+
 
 @end

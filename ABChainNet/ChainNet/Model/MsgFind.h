@@ -29,6 +29,9 @@ typedef NS_ENUM(NSInteger, FINDTYPE) {
 
 +(FindMessage *)creatFindMessageWithUserAddress:(NSString *)UserAddress
                                         andPeer:(DiscoverReplyMessage_PeerAddress *)peer;
+
++(FindMessage *)creatFindFileWithUserAddress:(NSString *)UserAddress
+                                        andPeer:(DiscoverReplyMessage_PeerAddress *)peer;
 @end
 
 
