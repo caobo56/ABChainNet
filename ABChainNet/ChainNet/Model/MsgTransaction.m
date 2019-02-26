@@ -31,6 +31,12 @@
     trans.version = 1;
     trans.updatedAt = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
     
+    trans.aimAddress.address = [NSString stringWithFormat:@"udp:%@:%ld",ZeroPointHost,DefaultPort];
+    
+    NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
+    trans.reqAddress.address = [NSString stringWithFormat:@"udp:%@:%ld",[us valueForKey:@"divice_host"],[[us valueForKey:@"divice_port"] intValue]];
+
+    
     trans.inputsArray = [NSMutableArray arrayWithCapacity:12];
     
     Transaction_Inputs * type_input = [[Transaction_Inputs alloc]init];
@@ -68,125 +74,20 @@
     trans.outputsArray = [NSMutableArray arrayWithCapacity:12];
     
     Transaction_Outputs * output = [[Transaction_Outputs alloc]init];
-    output.timestamp = trans.timestamp;
-    output.minimum = trans.minimum;
-    output.messageId = trans.messageId;
-    output.replyId = trans.replyId;
     output.scriptBytes = scriptBytes;
     output.value = [@"{}" dataUsingEncoding:NSUTF8StringEncoding];
     [trans.outputsArray addObject:output];
     
     Transaction_UnlockScripts * unlockScript = [[Transaction_UnlockScripts alloc]init];
     unlockScript.scriptBytes = [[NSData alloc]init];
-    unlockScript.sequence = trans.timestamp;
+    unlockScript.sequence = trans.timestamp; 
     trans.unlockScriptsArray = [NSMutableArray arrayWithCapacity:12];
     [trans.unlockScriptsArray addObject:unlockScript];
     
     return trans;
 }
 
-+(Transaction *)creatTransactionMessageWithUseInfo:(NSDictionary *)useInfo andScriptBytes:(NSData *)scriptBytes{
-    Transaction * trans = [[Transaction alloc]init];
-    trans.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
-    trans.minimum = 1;
-    trans.messageId = [NSDate getDateTimeToMilliSecondsStr:[NSDate new]];
-    trans.replyId = @"";
-    trans.version = 1;
-    trans.updatedAt = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
-    
-    trans.inputsArray = [NSMutableArray arrayWithCapacity:12];
-    
-    Transaction_Inputs * type_input = [[Transaction_Inputs alloc]init];
-    type_input.inputType = Transaction_Inputs_InputType_IssueType;
-    type_input.sequence = trans.timestamp;
-    type_input.issueInput = [[Transaction_Inputs_IssueInput alloc]init];
-    type_input.issueInput.sourceType = @"_type";
-    type_input.issueInput.data_p = [@"ID" dataUsingEncoding:NSUTF8StringEncoding];
-    [trans.inputsArray addObject:type_input];
-    
-    Transaction_Inputs * faceID_input = [[Transaction_Inputs alloc]init];
-    faceID_input.inputType = Transaction_Inputs_InputType_IssueType;
-    faceID_input.sequence = trans.timestamp;
-    faceID_input.issueInput = [[Transaction_Inputs_IssueInput alloc]init];
-    faceID_input.issueInput.sourceType = @"faceID";
-    faceID_input.issueInput.data_p = [useInfo[@"faceID"] dataUsingEncoding:NSUTF8StringEncoding];
-    [trans.inputsArray addObject:faceID_input];
-    
-    Transaction_Inputs * userNick_input = [[Transaction_Inputs alloc]init];
-    userNick_input.inputType = Transaction_Inputs_InputType_IssueType;
-    userNick_input.sequence = trans.timestamp;
-    userNick_input.issueInput = [[Transaction_Inputs_IssueInput alloc]init];
-    userNick_input.issueInput.sourceType = @"userNick";
-    userNick_input.issueInput.data_p = [useInfo[@"userNick"] dataUsingEncoding:NSUTF8StringEncoding];
-    [trans.inputsArray addObject:userNick_input];
-    
-    trans.outputsArray = [NSMutableArray arrayWithCapacity:12];
-    
-    Transaction_Outputs * output = [[Transaction_Outputs alloc]init];
-    output.timestamp = trans.timestamp;
-    output.minimum = trans.minimum;
-    output.messageId = trans.messageId;
-    output.replyId = trans.replyId;
-    output.scriptBytes = scriptBytes;
-    output.value = [@"{}" dataUsingEncoding:NSUTF8StringEncoding];
-    [trans.outputsArray addObject:output];
-    
-    Transaction_UnlockScripts * unlockScript = [[Transaction_UnlockScripts alloc]init];
-    unlockScript.scriptBytes = [[NSData alloc]init];
-    unlockScript.sequence = trans.timestamp;
-    trans.unlockScriptsArray = [NSMutableArray arrayWithCapacity:12];
-    [trans.unlockScriptsArray addObject:unlockScript];
-    
-    return trans;
-}
 
-+(Transaction *)creatTransactionMessageWith:(NSString *)faceID andScriptBytes:(NSData *)scriptBytes{
-    Transaction * trans = [[Transaction alloc]init];
-    trans.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
-    trans.minimum = 1;
-    trans.messageId = [NSDate getDateTimeToMilliSecondsStr:[NSDate new]];
-    trans.replyId = @"";
-    trans.version = 1;
-    trans.updatedAt = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
-    
-    trans.inputsArray = [NSMutableArray arrayWithCapacity:12];
-    
-    Transaction_Inputs * type_input = [[Transaction_Inputs alloc]init];
-    type_input.inputType = Transaction_Inputs_InputType_IssueType;
-    type_input.sequence = trans.timestamp;
-    type_input.issueInput = [[Transaction_Inputs_IssueInput alloc]init];
-    type_input.issueInput.sourceType = @"_type";
-    type_input.issueInput.data_p = [@"ID" dataUsingEncoding:NSUTF8StringEncoding];
-    [trans.inputsArray addObject:type_input];
-    
-    Transaction_Inputs * input = [[Transaction_Inputs alloc]init];
-    input.inputType = Transaction_Inputs_InputType_IssueType;
-    input.sequence = trans.timestamp;
-    input.issueInput = [[Transaction_Inputs_IssueInput alloc]init];
-    input.issueInput.sourceType = @"faceID";
-    input.issueInput.data_p = [faceID dataUsingEncoding:NSUTF8StringEncoding];
-    
-    [trans.inputsArray addObject:input];
-    
-    trans.outputsArray = [NSMutableArray arrayWithCapacity:12];
-    
-    Transaction_Outputs * output = [[Transaction_Outputs alloc]init];
-    output.timestamp = trans.timestamp;
-    output.minimum = trans.minimum;
-    output.messageId = trans.messageId;
-    output.replyId = trans.replyId;
-    output.scriptBytes = scriptBytes;
-    output.value = [@"{}" dataUsingEncoding:NSUTF8StringEncoding];
-    [trans.outputsArray addObject:output];
-    
-    Transaction_UnlockScripts * unlockScript = [[Transaction_UnlockScripts alloc]init];
-    unlockScript.scriptBytes = [[NSData alloc]init];
-    unlockScript.sequence = trans.timestamp;
-    trans.unlockScriptsArray = [NSMutableArray arrayWithCapacity:12];
-    [trans.unlockScriptsArray addObject:unlockScript];
-    
-    return trans;
-}
 
 +(Transaction *)creatTransactionMessageWithFileInfo:(NSDictionary *)fileInfo andScriptBytes:(NSData *)scriptBytes{
     
@@ -275,10 +176,6 @@
     trans.outputsArray = [NSMutableArray arrayWithCapacity:12];
     
     Transaction_Outputs * output = [[Transaction_Outputs alloc]init];
-    output.timestamp = trans.timestamp;
-    output.minimum = trans.minimum;
-    output.messageId = trans.messageId;
-    output.replyId = trans.replyId;
     output.scriptBytes = scriptBytes;
     output.value = [@"{}" dataUsingEncoding:NSUTF8StringEncoding];
     [trans.outputsArray addObject:output];

@@ -77,11 +77,14 @@ static NetConnNode * nodeConn = nil;
     [_peerAddressArray addObjectsFromArray:peerAddressArray];
     
     NSArray * arr_temp = [NSArray arrayWithArray:peerAddressArray];
+    NSLog(@"arr_temp = %@",arr_temp);
     for (DiscoverReplyMessage_PeerAddress * peer in arr_temp) {
+        NSLog(@"peer.id_p = %@",peer.id_p);
         if([peer.id_p isEqualToString:DeviceID]){
             NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-            [us setValue:peer.ip forKey:@"divice_host"];
-            [us setValue:[NSString stringWithFormat:@"%d",peer.port] forKey:@"divice_port"];
+            NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+            [us setValue:[address_array[1] copy] forKey:@"divice_host"];
+            [us setValue:[address_array[2] copy] forKey:@"divice_port"];
             [us setValue:DeviceID forKey:@"divice_ID"];
             [us synchronize];
             [_peerAddressArray removeObject:peer];
@@ -89,8 +92,7 @@ static NetConnNode * nodeConn = nil;
     }
     
     DiscoverReplyMessage_PeerAddress * peer = [[DiscoverReplyMessage_PeerAddress alloc]init];
-    peer.ip = ZeroPointHost;
-    peer.port = DefaultPort;
+    peer.address = [NSString stringWithFormat:@"udp:%@:%ld",ZeroPointHost,DefaultPort];
     [_peerAddressArray addObject:[peer copy]];
     
 //    [self sendVersionToPeerList];
@@ -129,26 +131,21 @@ static NetConnNode * nodeConn = nil;
     Transaction * trans = [MsgTransaction creatTransactionMessageWithUserInfo:userInfo andScriptBytes:scriptBytes];
     NSLog(@"trans == %@",trans);
     for (DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray) {
-        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:peer.ip and:nil];
+        NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:address_array[1] and:nil];
     }
     block(@"消息已经广播完成！",nil);
 }
 
--(void)sendTranstionWith:(NSString *)faceID andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block{
-    Transaction * trans = [MsgTransaction creatTransactionMessageWith:faceID andScriptBytes:scriptBytes];
-    NSLog(@"trans == %@",trans);
-    for (DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray) {
-        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:peer.ip and:nil];
-    }
-    block(@"消息已经广播完成！",nil);
-}
+
 
 
 -(void)sendTranstionWithFileInfo:(NSDictionary *)fileInfo andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block{
     Transaction * trans = [MsgTransaction creatTransactionMessageWithFileInfo:fileInfo andScriptBytes:scriptBytes];
     NSLog(@"trans == %@",trans);
     for (DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray) {
-        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:peer.ip and:nil];
+        NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:address_array[1] and:nil];
     }
     block(@"消息已经广播完成！",nil);
 }
@@ -156,7 +153,8 @@ static NetConnNode * nodeConn = nil;
 
 -(void)sendTranstionWith:(Transaction *)trans With:(NetConnNodeBlock)block{
     for (DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray) {
-        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:peer.ip and:nil];
+        NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+        [[BCNetWorking shared] sendTransactionMessageWith:trans andToHost:address_array[1] and:nil];
     }
     block(@"消息已经广播完成！",nil);
 }
@@ -172,35 +170,12 @@ static NetConnNode * nodeConn = nil;
  */
 -(void)findFaceIDWith:(NSString *)faceID and:(NetConnNodeBlock)findFaceIDBlock{
     NSMutableArray<Transaction *> * transArr = [NSMutableArray arrayWithCapacity:12];
-    __block NSMutableArray<Transaction *> * blk_transArr = transArr;
-    int allCount = 0;
-    int timeoutCount = 0;
-    int emptyCount = 0;
-    __block int blk_allCount = allCount;
-    __block int blk_timeoutCount = timeoutCount;
-    __block int blk_emptyCount = emptyCount;
-    WeakSelf
-    for(DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray){
-        [self circulationFindFaceIDWith:faceID and:peer and:^(id message, NSError *error) {
-            if (!error) {
-                [blk_transArr addObject:message];
-            }else if (error.code == KUFindEmpty){
-                blk_emptyCount++;
-            }else if (error.code == KUFindTimeOut){
-                blk_timeoutCount++;
-            }
-            blk_allCount++;
-            if (blk_allCount == weakSelf.peerAddressArray.count) {
-                NSDictionary * dict = @{
-                                        @"allCount":@(blk_allCount),
-                                        @"timeoutCount":@(blk_timeoutCount),
-                                        @"emptyCount":@(blk_emptyCount),
-                                        @"trans":blk_transArr
-                                        };
-                findFaceIDBlock(dict,nil);
-            }
-        }];
-    }
+    DiscoverReplyMessage_PeerAddress * peer = [[DiscoverReplyMessage_PeerAddress alloc]init];
+    peer.address = [NSString stringWithFormat:@"udp:%@:%ld",ZeroPointHost,DefaultPort];
+    __block NSString * blkfaceID = faceID;
+    [self circulationFindFaceIDWith:blkfaceID and:peer and:^(id message, NSError *error) {
+        findFaceIDBlock(message,error);
+    }];
 }
 
 /**
@@ -214,7 +189,8 @@ static NetConnNode * nodeConn = nil;
     __block NSString * blockFaceId = faceID;
     FindMessage * find = [MsgFind creatFindMessageWithFaceID:faceID andPeer:peer];
     WeakSelf
-    [[BCNetWorking shared] sendFindMessageWith:find andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
+    NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+    [[BCNetWorking shared] sendFindMessageWith:find andToHost:address_array[1] and:^(id receiveMsg, NSError *error) {
         if (!error) {
             FindAckMessage * replay = (FindAckMessage *)receiveMsg;
             Transaction * trans = [weakSelf checkFindAckMessage:replay andCondition:blockFaceId];
@@ -272,13 +248,15 @@ static NetConnNode * nodeConn = nil;
  */
 -(void)findUserAddressWith:(NSString *)userAddress and:(NetConnNodeBlock)block{
     DiscoverReplyMessage_PeerAddress * peer = [[DiscoverReplyMessage_PeerAddress alloc]init];
-    peer.ip = ZeroPointHost;
-    peer.port = DefaultPort;
+    
+    peer.address = [NSString stringWithFormat:@"udp:%@:%ld",ZeroPointHost,DefaultPort];
+
     __block NSString * blockAddress = userAddress;
 
     FindMessage * find = [MsgFind creatFindMessageWithUserAddress:userAddress andPeer:peer];
     WeakSelf
-    [[BCNetWorking shared] sendFindMessageWith:find andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
+    NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+    [[BCNetWorking shared] sendFindMessageWith:find andToHost:address_array[1] and:^(id receiveMsg, NSError *error) {
         if (!error) {
             FindAckMessage * replay = (FindAckMessage *)receiveMsg;
             Transaction * trans = [weakSelf checkFindAckMessage:replay andUserAddress:blockAddress];
@@ -309,7 +287,9 @@ static NetConnNode * nodeConn = nil;
     __block NSString * blockAddress = address;
     FindMessage * find = [MsgFind creatFindMessageWithUserAddress:address andPeer:peer];
     WeakSelf
-    [[BCNetWorking shared] sendFindMessageWith:find andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
+    NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+
+    [[BCNetWorking shared] sendFindMessageWith:find andToHost:address_array[1] and:^(id receiveMsg, NSError *error) {
         if (!error) {
             FindAckMessage * replay = (FindAckMessage *)receiveMsg;
             Transaction * trans = [weakSelf checkFindAckMessage:replay andUserAddress:blockAddress];
@@ -360,13 +340,14 @@ static NetConnNode * nodeConn = nil;
 
 -(void)findFileInfosWith:(NSString *)userAddress and:(NetConnNodeBlock)block{
     DiscoverReplyMessage_PeerAddress * peer = [[DiscoverReplyMessage_PeerAddress alloc]init];
-    peer.ip = ZeroPointHost;
-    peer.port = DefaultPort;
+    peer.address = [NSString stringWithFormat:@"udp:%@:%ld",ZeroPointHost,DefaultPort];
+
     __block NSString * blockAddress = userAddress;
 
     FindMessage * find = [MsgFind creatFindFileWithUserAddress:userAddress andPeer:peer];
     WeakSelf
-    [[BCNetWorking shared] sendFindMessageWith:find andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
+    NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+    [[BCNetWorking shared] sendFindMessageWith:find andToHost:address_array[1] and:^(id receiveMsg, NSError *error) {
         if (!error) {
             FindAckMessage * replay = (FindAckMessage *)receiveMsg;
             NSArray * trans = [weakSelf checkFileFindAckMessage:replay andUserAddress:blockAddress];
@@ -413,12 +394,14 @@ static NetConnNode * nodeConn = nil;
 -(void)sendVersionMessageToZeroPoint{
     WeakSelf
     NSLog(@"start VersionMessage");
-    VersionMessage * ver = [MsgVersion creatVersionMessage];
+    VersionMessage * ver = [MsgVersion creatVersionMessageWithOpCode:@"VER-1"];
     [[BCNetWorking shared] sendVersionMessageWith:ver andToHost:ZeroPointHost and:^(GPBMessage *receiveMsg, NSError *error) {
         if (!error) {
             NSLog(@"VersionMessage recive");
-            [weakSelf sendDiscoverToZeroPoint];
             [weakSelf startNetConnHeartbeat];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf sendDiscoverToZeroPoint];
+            });
             if(self.delegate){
                 [self.delegate netConnNode:self DidStart:YES];
             }
@@ -462,8 +445,10 @@ static NetConnNode * nodeConn = nil;
     for(__strong DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray){
         WeakSelf
         __block DiscoverReplyMessage_PeerAddress * blockPeer = peer;
-        VersionMessage * version = [MsgVersion creatVersionMessage];
-        [[BCNetWorking shared] sendVersionMessageWith:version andToHost:peer.ip and:^(id receiveMsg, NSError *error) {
+#warning OpCode
+        VersionMessage * version = [MsgVersion creatVersionMessageWithOpCode:@""];
+        NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+        [[BCNetWorking shared] sendVersionMessageWith:version andToHost:address_array[1] and:^(id receiveMsg, NSError *error) {
             if(!error){
                 [weakSelf.peerAddressArray addObject:blockPeer];
             }
@@ -482,13 +467,14 @@ static NetConnNode * nodeConn = nil;
  每次心跳执行的Action
  */
 -(void)netConnHeartbeat{
-    if (_peerAddressArray.count < 1) {
-        return;
-    }else{
-        for(DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray){
-            [self sendPingMessageWith:peer.ip];
-        }
-    }
+    [self sendPingMessageWith:ZeroPointHost];
+    return;
+//    if (_peerAddressArray.count < 1) {
+//        return;
+//    }else{
+//        for(DiscoverReplyMessage_PeerAddress * peer in _peerAddressArray){
+//        }
+//    }
 }
 
 /**
@@ -500,6 +486,9 @@ static NetConnNode * nodeConn = nil;
     __block NSString * blockHost = host;
     WeakSelf
     PingMessage * pingMessage = [MsgPing creatPingMessage];
+    [[BCNetWorking shared] sendPingMessageWith:pingMessage andToHost:host and:nil];
+    NSLog(@"pingMessage send");
+    return;
     [[BCNetWorking shared] sendPingMessageWith:pingMessage andToHost:host and:^(GPBMessage *receiveMsg, NSError *error) {
         if(!error){
             NSLog(@"receiveMsg From %@:\n%@",blockHost,receiveMsg);
@@ -507,7 +496,8 @@ static NetConnNode * nodeConn = nil;
             NSLog(@"host %@ sendPingMessage %@",host,error.userInfo[@"description"]);
             NSArray * arr_temp = [NSArray arrayWithArray:weakSelf.peerAddressArray];
             for (DiscoverReplyMessage_PeerAddress * peer in arr_temp) {
-                if([peer.ip isEqualToString:host]){
+                NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+                if([address_array[1] isEqualToString:host]){
                     [weakSelf.peerAddressArray removeObject:peer];
                     NSLog(@"host %@ removed",host);
                 }

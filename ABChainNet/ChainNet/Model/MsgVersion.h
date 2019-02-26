@@ -11,6 +11,6 @@
 
 @interface MsgVersion : BasicMsgModel
 
-+(VersionMessage *)creatVersionMessage;
++(VersionMessage *)creatVersionMessageWithOpCode:(NSString *)opCode;
 
 @end

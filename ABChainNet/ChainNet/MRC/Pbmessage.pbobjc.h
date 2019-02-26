@@ -89,6 +89,7 @@ typedef GPB_ENUM(VersionMessage_FieldNumber) {
   VersionMessage_FieldNumber_SubVer = 7,
   VersionMessage_FieldNumber_Id_p = 8,
   VersionMessage_FieldNumber_SessionId = 9,
+  VersionMessage_FieldNumber_Opcode = 10,
 };
 
 @interface VersionMessage : GPBMessage
@@ -124,6 +125,10 @@ typedef GPB_ENUM(VersionMessage_FieldNumber) {
 @property(nonatomic, readwrite, copy, null_resettable) NSString *sessionId;
 /** Test to see if @c sessionId has been set. */
 @property(nonatomic, readwrite) BOOL hasSessionId;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *opcode;
+/** Test to see if @c opcode has been set. */
+@property(nonatomic, readwrite) BOOL hasOpcode;
 
 @end
 
@@ -239,27 +244,28 @@ typedef GPB_ENUM(DiscoverReplyMessage_FieldNumber) {
 #pragma mark - DiscoverReplyMessage_PeerAddress
 
 typedef GPB_ENUM(DiscoverReplyMessage_PeerAddress_FieldNumber) {
-  DiscoverReplyMessage_PeerAddress_FieldNumber_Ip = 1,
-  DiscoverReplyMessage_PeerAddress_FieldNumber_Port = 2,
-  DiscoverReplyMessage_PeerAddress_FieldNumber_Services = 3,
-  DiscoverReplyMessage_PeerAddress_FieldNumber_Id_p = 4,
+  DiscoverReplyMessage_PeerAddress_FieldNumber_Address = 1,
+  DiscoverReplyMessage_PeerAddress_FieldNumber_Services = 2,
+  DiscoverReplyMessage_PeerAddress_FieldNumber_Id_p = 3,
+  DiscoverReplyMessage_PeerAddress_FieldNumber_SessionId = 4,
 };
 
 @interface DiscoverReplyMessage_PeerAddress : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *ip;
-/** Test to see if @c ip has been set. */
-@property(nonatomic, readwrite) BOOL hasIp;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/** Test to see if @c address has been set. */
+@property(nonatomic, readwrite) BOOL hasAddress;
 
-@property(nonatomic, readwrite) int32_t port;
-
-@property(nonatomic, readwrite) BOOL hasPort;
 @property(nonatomic, readwrite) int64_t services;
 
 @property(nonatomic, readwrite) BOOL hasServices;
 @property(nonatomic, readwrite, copy, null_resettable) NSString *id_p;
 /** Test to see if @c id_p has been set. */
 @property(nonatomic, readwrite) BOOL hasId_p;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *sessionId;
+/** Test to see if @c sessionId has been set. */
+@property(nonatomic, readwrite) BOOL hasSessionId;
 
 @end
 
@@ -385,37 +391,29 @@ typedef GPB_ENUM(FindMessage_FieldNumber) {
 #pragma mark - FindMessage_ReqAddress
 
 typedef GPB_ENUM(FindMessage_ReqAddress_FieldNumber) {
-  FindMessage_ReqAddress_FieldNumber_Ip = 1,
-  FindMessage_ReqAddress_FieldNumber_Port = 2,
+  FindMessage_ReqAddress_FieldNumber_Address = 1,
 };
 
 @interface FindMessage_ReqAddress : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *ip;
-/** Test to see if @c ip has been set. */
-@property(nonatomic, readwrite) BOOL hasIp;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/** Test to see if @c address has been set. */
+@property(nonatomic, readwrite) BOOL hasAddress;
 
-@property(nonatomic, readwrite) int32_t port;
-
-@property(nonatomic, readwrite) BOOL hasPort;
 @end
 
 #pragma mark - FindMessage_AimAddress
 
 typedef GPB_ENUM(FindMessage_AimAddress_FieldNumber) {
-  FindMessage_AimAddress_FieldNumber_Ip = 1,
-  FindMessage_AimAddress_FieldNumber_Port = 2,
+  FindMessage_AimAddress_FieldNumber_Address = 1,
 };
 
 @interface FindMessage_AimAddress : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *ip;
-/** Test to see if @c ip has been set. */
-@property(nonatomic, readwrite) BOOL hasIp;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/** Test to see if @c address has been set. */
+@property(nonatomic, readwrite) BOOL hasAddress;
 
-@property(nonatomic, readwrite) int32_t port;
-
-@property(nonatomic, readwrite) BOOL hasPort;
 @end
 
 #pragma mark - FindAckMessage
@@ -473,37 +471,29 @@ typedef GPB_ENUM(FindAckMessage_FieldNumber) {
 #pragma mark - FindAckMessage_AeqAddress
 
 typedef GPB_ENUM(FindAckMessage_AeqAddress_FieldNumber) {
-  FindAckMessage_AeqAddress_FieldNumber_Ip = 1,
-  FindAckMessage_AeqAddress_FieldNumber_Port = 2,
+  FindAckMessage_AeqAddress_FieldNumber_Address = 1,
 };
 
 @interface FindAckMessage_AeqAddress : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *ip;
-/** Test to see if @c ip has been set. */
-@property(nonatomic, readwrite) BOOL hasIp;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/** Test to see if @c address has been set. */
+@property(nonatomic, readwrite) BOOL hasAddress;
 
-@property(nonatomic, readwrite) int32_t port;
-
-@property(nonatomic, readwrite) BOOL hasPort;
 @end
 
 #pragma mark - FindAckMessage_AimAddress
 
 typedef GPB_ENUM(FindAckMessage_AimAddress_FieldNumber) {
-  FindAckMessage_AimAddress_FieldNumber_Ip = 1,
-  FindAckMessage_AimAddress_FieldNumber_Port = 2,
+  FindAckMessage_AimAddress_FieldNumber_Address = 1,
 };
 
 @interface FindAckMessage_AimAddress : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *ip;
-/** Test to see if @c ip has been set. */
-@property(nonatomic, readwrite) BOOL hasIp;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/** Test to see if @c address has been set. */
+@property(nonatomic, readwrite) BOOL hasAddress;
 
-@property(nonatomic, readwrite) int32_t port;
-
-@property(nonatomic, readwrite) BOOL hasPort;
 @end
 
 #pragma mark - FindAckMessage_Result
@@ -593,37 +583,29 @@ typedef GPB_ENUM(Transaction_FieldNumber) {
 #pragma mark - Transaction_ReqAddress
 
 typedef GPB_ENUM(Transaction_ReqAddress_FieldNumber) {
-  Transaction_ReqAddress_FieldNumber_Ip = 1,
-  Transaction_ReqAddress_FieldNumber_Port = 2,
+  Transaction_ReqAddress_FieldNumber_Address = 1,
 };
 
 @interface Transaction_ReqAddress : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *ip;
-/** Test to see if @c ip has been set. */
-@property(nonatomic, readwrite) BOOL hasIp;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/** Test to see if @c address has been set. */
+@property(nonatomic, readwrite) BOOL hasAddress;
 
-@property(nonatomic, readwrite) int32_t port;
-
-@property(nonatomic, readwrite) BOOL hasPort;
 @end
 
 #pragma mark - Transaction_AimAddress
 
 typedef GPB_ENUM(Transaction_AimAddress_FieldNumber) {
-  Transaction_AimAddress_FieldNumber_Ip = 1,
-  Transaction_AimAddress_FieldNumber_Port = 2,
+  Transaction_AimAddress_FieldNumber_Address = 1,
 };
 
 @interface Transaction_AimAddress : GPBMessage
 
-@property(nonatomic, readwrite, copy, null_resettable) NSString *ip;
-/** Test to see if @c ip has been set. */
-@property(nonatomic, readwrite) BOOL hasIp;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/** Test to see if @c address has been set. */
+@property(nonatomic, readwrite) BOOL hasAddress;
 
-@property(nonatomic, readwrite) int32_t port;
-
-@property(nonatomic, readwrite) BOOL hasPort;
 @end
 
 #pragma mark - Transaction_Inputs
@@ -725,29 +707,11 @@ typedef GPB_ENUM(Transaction_Inputs_IssueInput_FieldNumber) {
 #pragma mark - Transaction_Outputs
 
 typedef GPB_ENUM(Transaction_Outputs_FieldNumber) {
-  Transaction_Outputs_FieldNumber_Timestamp = 1,
-  Transaction_Outputs_FieldNumber_Minimum = 2,
-  Transaction_Outputs_FieldNumber_MessageId = 3,
-  Transaction_Outputs_FieldNumber_ReplyId = 4,
-  Transaction_Outputs_FieldNumber_ScriptBytes = 5,
-  Transaction_Outputs_FieldNumber_Value = 6,
+  Transaction_Outputs_FieldNumber_ScriptBytes = 1,
+  Transaction_Outputs_FieldNumber_Value = 2,
 };
 
 @interface Transaction_Outputs : GPBMessage
-
-@property(nonatomic, readwrite) int64_t timestamp;
-
-@property(nonatomic, readwrite) BOOL hasTimestamp;
-@property(nonatomic, readwrite) int32_t minimum;
-
-@property(nonatomic, readwrite) BOOL hasMinimum;
-@property(nonatomic, readwrite, copy, null_resettable) NSString *messageId;
-/** Test to see if @c messageId has been set. */
-@property(nonatomic, readwrite) BOOL hasMessageId;
-
-@property(nonatomic, readwrite, copy, null_resettable) NSString *replyId;
-/** Test to see if @c replyId has been set. */
-@property(nonatomic, readwrite) BOOL hasReplyId;
 
 @property(nonatomic, readwrite, copy, null_resettable) NSData *scriptBytes;
 /** Test to see if @c scriptBytes has been set. */

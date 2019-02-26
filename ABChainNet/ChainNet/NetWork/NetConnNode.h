@@ -64,14 +64,7 @@ typedef void(^NetConnNodeBlock)(id message,NSError * error);
 
 
 
-/**
- 发送Transtion命令，创建由faceID生成一笔交易并广播
- 
- @param faceID faceID 人脸ID
- @param scriptBytes scriptBytes 交易的锁定脚本
- @param block block 回调block函数
- */
--(void)sendTranstionWith:(NSString *)faceID andScriptBytes:(NSData *)scriptBytes and:(NetConnNodeBlock)block;
+
 
 /**
  发送Transtion命令，创建由userInfo生成一笔交易并广播

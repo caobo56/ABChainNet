@@ -29,15 +29,14 @@
     
     FindMessage_ReqAddress * reqAddress = [[FindMessage_ReqAddress alloc]init];
     NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-    reqAddress.ip = [us valueForKey:@"divice_host"];
-    reqAddress.port = [[us valueForKey:@"divice_port"] intValue];
+    reqAddress.address = [NSString stringWithFormat:@"udp:%@:%ld",[us valueForKey:@"divice_host"],[[us valueForKey:@"divice_port"] intValue]];
+
     find.reqAddress = reqAddress;
     
     find.reqId = [us valueForKey:@"divice_ID"];
     
     FindMessage_AimAddress * aimAddress = [[FindMessage_AimAddress alloc]init];
-    aimAddress.ip = peer.ip;
-    aimAddress.port = peer.port;
+    aimAddress.address = peer.address;
     find.aimAddress = aimAddress;
     
     find.resourceType = GetFINDTYPE(FIND_TRANS);
@@ -52,7 +51,9 @@
     if (error) {
         return nil;
     }
+    NSLog(@"find %@",find);
     return find;
+    
 }
 
 
@@ -66,15 +67,14 @@
     
     FindMessage_ReqAddress * reqAddress = [[FindMessage_ReqAddress alloc]init];
     NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-    reqAddress.ip = [us valueForKey:@"divice_host"];
-    reqAddress.port = [[us valueForKey:@"divice_port"] intValue];
+    reqAddress.address = [NSString stringWithFormat:@"udp:%@:%ld",[us valueForKey:@"divice_host"],[[us valueForKey:@"divice_port"] intValue]];
     find.reqAddress = reqAddress;
     
     find.reqId = [us valueForKey:@"divice_ID"];
     
     FindMessage_AimAddress * aimAddress = [[FindMessage_AimAddress alloc]init];
-    aimAddress.ip = peer.ip;
-    aimAddress.port = peer.port;
+    aimAddress.address = peer.address;
+
     find.aimAddress = aimAddress;
     
     find.resourceType = GetFINDTYPE(FIND_TRANS);
@@ -102,15 +102,16 @@
     
     FindMessage_ReqAddress * reqAddress = [[FindMessage_ReqAddress alloc]init];
     NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-    reqAddress.ip = [us valueForKey:@"divice_host"];
-    reqAddress.port = [[us valueForKey:@"divice_port"] intValue];
+    reqAddress.address = [NSString stringWithFormat:@"udp:%@:%ld",[us valueForKey:@"divice_host"],[[us valueForKey:@"divice_port"] intValue]];
+
     find.reqAddress = reqAddress;
     
     find.reqId = [us valueForKey:@"divice_ID"];
     
     FindMessage_AimAddress * aimAddress = [[FindMessage_AimAddress alloc]init];
-    aimAddress.ip = peer.ip;
-    aimAddress.port = peer.port;
+    NSArray *address_array = [peer.address componentsSeparatedByString:@":"];
+    aimAddress.address = peer.address;
+
     find.aimAddress = aimAddress;
     
     find.resourceType = GetFINDTYPE(FIND_TRANS);
@@ -151,14 +152,14 @@
         super.messageId = vmsg.messageId;
         super.payload = fmt.payload;
     }
-    NSLog(@"payload == %@",self.payload);
-    FindAckMessage * findack = (FindAckMessage *)super.payload;
-    
-    FormaterDataObj * fmtReturn = [[FormaterDataObj alloc]initWithObj:findack];
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(msgModel:didSendMsg:from:)]) {
-        [super.delegate msgModel:self didSendMsg:fmtReturn.resData from:self.host];
-    }
+//    NSLog(@"payload == %@",self.payload);
+//    FindAckMessage * findack = (FindAckMessage *)super.payload;
+//
+//    FormaterDataObj * fmtReturn = [[FormaterDataObj alloc]initWithObj:findack];
+//
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(msgModel:didSendMsg:from:)]) {
+//        [super.delegate msgModel:self didSendMsg:fmtReturn.resData from:self.host];
+//    }
     
 }
 

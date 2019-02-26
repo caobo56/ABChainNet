@@ -57,6 +57,7 @@ static GPBFileDescriptor *PbmessageRoot_FileDescriptor(void) {
 @dynamic hasSubVer, subVer;
 @dynamic hasId_p, id_p;
 @dynamic hasSessionId, sessionId;
+@dynamic hasOpcode, opcode;
 
 typedef struct VersionMessage__storage_ {
   uint32_t _has_storage_[1];
@@ -67,6 +68,7 @@ typedef struct VersionMessage__storage_ {
   NSString *subVer;
   NSString *id_p;
   NSString *sessionId;
+  NSString *opcode;
   int64_t timestamp;
   int64_t services;
 } VersionMessage__storage_;
@@ -156,6 +158,15 @@ typedef struct VersionMessage__storage_ {
         .hasIndex = 8,
         .offset = (uint32_t)offsetof(VersionMessage__storage_, sessionId),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "opcode",
+        .dataTypeSpecific.className = NULL,
+        .number = VersionMessage_FieldNumber_Opcode,
+        .hasIndex = 9,
+        .offset = (uint32_t)offsetof(VersionMessage__storage_, opcode),
+        .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
     };
@@ -493,16 +504,16 @@ typedef struct DiscoverReplyMessage__storage_ {
 
 @implementation DiscoverReplyMessage_PeerAddress
 
-@dynamic hasIp, ip;
-@dynamic hasPort, port;
+@dynamic hasAddress, address;
 @dynamic hasServices, services;
 @dynamic hasId_p, id_p;
+@dynamic hasSessionId, sessionId;
 
 typedef struct DiscoverReplyMessage_PeerAddress__storage_ {
   uint32_t _has_storage_[1];
-  int32_t port;
-  NSString *ip;
+  NSString *address;
   NSString *id_p;
+  NSString *sessionId;
   int64_t services;
 } DiscoverReplyMessage_PeerAddress__storage_;
 
@@ -513,28 +524,19 @@ typedef struct DiscoverReplyMessage_PeerAddress__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "ip",
+        .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = DiscoverReplyMessage_PeerAddress_FieldNumber_Ip,
+        .number = DiscoverReplyMessage_PeerAddress_FieldNumber_Address,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(DiscoverReplyMessage_PeerAddress__storage_, ip),
+        .offset = (uint32_t)offsetof(DiscoverReplyMessage_PeerAddress__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
-      },
-      {
-        .name = "port",
-        .dataTypeSpecific.className = NULL,
-        .number = DiscoverReplyMessage_PeerAddress_FieldNumber_Port,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(DiscoverReplyMessage_PeerAddress__storage_, port),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
       },
       {
         .name = "services",
         .dataTypeSpecific.className = NULL,
         .number = DiscoverReplyMessage_PeerAddress_FieldNumber_Services,
-        .hasIndex = 2,
+        .hasIndex = 1,
         .offset = (uint32_t)offsetof(DiscoverReplyMessage_PeerAddress__storage_, services),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeInt64,
@@ -543,9 +545,18 @@ typedef struct DiscoverReplyMessage_PeerAddress__storage_ {
         .name = "id_p",
         .dataTypeSpecific.className = NULL,
         .number = DiscoverReplyMessage_PeerAddress_FieldNumber_Id_p,
-        .hasIndex = 3,
+        .hasIndex = 2,
         .offset = (uint32_t)offsetof(DiscoverReplyMessage_PeerAddress__storage_, id_p),
         .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "sessionId",
+        .dataTypeSpecific.className = NULL,
+        .number = DiscoverReplyMessage_PeerAddress_FieldNumber_SessionId,
+        .hasIndex = 3,
+        .offset = (uint32_t)offsetof(DiscoverReplyMessage_PeerAddress__storage_, sessionId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
       },
     };
@@ -557,6 +568,11 @@ typedef struct DiscoverReplyMessage_PeerAddress__storage_ {
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(DiscoverReplyMessage_PeerAddress__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
+#if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    static const char *extraTextFormatInfo =
+        "\001\004\010A\000";
+    [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
+#endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(DiscoverReplyMessage)];
     NSAssert(descriptor == nil, @"Startup recursed!");
     descriptor = localDescriptor;
@@ -901,13 +917,11 @@ typedef struct FindMessage__storage_ {
 
 @implementation FindMessage_ReqAddress
 
-@dynamic hasIp, ip;
-@dynamic hasPort, port;
+@dynamic hasAddress, address;
 
 typedef struct FindMessage_ReqAddress__storage_ {
   uint32_t _has_storage_[1];
-  int32_t port;
-  NSString *ip;
+  NSString *address;
 } FindMessage_ReqAddress__storage_;
 
 // This method is threadsafe because it is initially called
@@ -917,22 +931,13 @@ typedef struct FindMessage_ReqAddress__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "ip",
+        .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = FindMessage_ReqAddress_FieldNumber_Ip,
+        .number = FindMessage_ReqAddress_FieldNumber_Address,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(FindMessage_ReqAddress__storage_, ip),
+        .offset = (uint32_t)offsetof(FindMessage_ReqAddress__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
-      },
-      {
-        .name = "port",
-        .dataTypeSpecific.className = NULL,
-        .number = FindMessage_ReqAddress_FieldNumber_Port,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(FindMessage_ReqAddress__storage_, port),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -956,13 +961,11 @@ typedef struct FindMessage_ReqAddress__storage_ {
 
 @implementation FindMessage_AimAddress
 
-@dynamic hasIp, ip;
-@dynamic hasPort, port;
+@dynamic hasAddress, address;
 
 typedef struct FindMessage_AimAddress__storage_ {
   uint32_t _has_storage_[1];
-  int32_t port;
-  NSString *ip;
+  NSString *address;
 } FindMessage_AimAddress__storage_;
 
 // This method is threadsafe because it is initially called
@@ -972,22 +975,13 @@ typedef struct FindMessage_AimAddress__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "ip",
+        .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = FindMessage_AimAddress_FieldNumber_Ip,
+        .number = FindMessage_AimAddress_FieldNumber_Address,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(FindMessage_AimAddress__storage_, ip),
+        .offset = (uint32_t)offsetof(FindMessage_AimAddress__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
-      },
-      {
-        .name = "port",
-        .dataTypeSpecific.className = NULL,
-        .number = FindMessage_AimAddress_FieldNumber_Port,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(FindMessage_AimAddress__storage_, port),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -1147,13 +1141,11 @@ typedef struct FindAckMessage__storage_ {
 
 @implementation FindAckMessage_AeqAddress
 
-@dynamic hasIp, ip;
-@dynamic hasPort, port;
+@dynamic hasAddress, address;
 
 typedef struct FindAckMessage_AeqAddress__storage_ {
   uint32_t _has_storage_[1];
-  int32_t port;
-  NSString *ip;
+  NSString *address;
 } FindAckMessage_AeqAddress__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1163,22 +1155,13 @@ typedef struct FindAckMessage_AeqAddress__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "ip",
+        .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = FindAckMessage_AeqAddress_FieldNumber_Ip,
+        .number = FindAckMessage_AeqAddress_FieldNumber_Address,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(FindAckMessage_AeqAddress__storage_, ip),
+        .offset = (uint32_t)offsetof(FindAckMessage_AeqAddress__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
-      },
-      {
-        .name = "port",
-        .dataTypeSpecific.className = NULL,
-        .number = FindAckMessage_AeqAddress_FieldNumber_Port,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(FindAckMessage_AeqAddress__storage_, port),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -1202,13 +1185,11 @@ typedef struct FindAckMessage_AeqAddress__storage_ {
 
 @implementation FindAckMessage_AimAddress
 
-@dynamic hasIp, ip;
-@dynamic hasPort, port;
+@dynamic hasAddress, address;
 
 typedef struct FindAckMessage_AimAddress__storage_ {
   uint32_t _has_storage_[1];
-  int32_t port;
-  NSString *ip;
+  NSString *address;
 } FindAckMessage_AimAddress__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1218,22 +1199,13 @@ typedef struct FindAckMessage_AimAddress__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "ip",
+        .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = FindAckMessage_AimAddress_FieldNumber_Ip,
+        .number = FindAckMessage_AimAddress_FieldNumber_Address,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(FindAckMessage_AimAddress__storage_, ip),
+        .offset = (uint32_t)offsetof(FindAckMessage_AimAddress__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
-      },
-      {
-        .name = "port",
-        .dataTypeSpecific.className = NULL,
-        .number = FindAckMessage_AimAddress_FieldNumber_Port,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(FindAckMessage_AimAddress__storage_, port),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -1481,13 +1453,11 @@ typedef struct Transaction__storage_ {
 
 @implementation Transaction_ReqAddress
 
-@dynamic hasIp, ip;
-@dynamic hasPort, port;
+@dynamic hasAddress, address;
 
 typedef struct Transaction_ReqAddress__storage_ {
   uint32_t _has_storage_[1];
-  int32_t port;
-  NSString *ip;
+  NSString *address;
 } Transaction_ReqAddress__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1497,22 +1467,13 @@ typedef struct Transaction_ReqAddress__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "ip",
+        .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = Transaction_ReqAddress_FieldNumber_Ip,
+        .number = Transaction_ReqAddress_FieldNumber_Address,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(Transaction_ReqAddress__storage_, ip),
+        .offset = (uint32_t)offsetof(Transaction_ReqAddress__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
-      },
-      {
-        .name = "port",
-        .dataTypeSpecific.className = NULL,
-        .number = Transaction_ReqAddress_FieldNumber_Port,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(Transaction_ReqAddress__storage_, port),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -1536,13 +1497,11 @@ typedef struct Transaction_ReqAddress__storage_ {
 
 @implementation Transaction_AimAddress
 
-@dynamic hasIp, ip;
-@dynamic hasPort, port;
+@dynamic hasAddress, address;
 
 typedef struct Transaction_AimAddress__storage_ {
   uint32_t _has_storage_[1];
-  int32_t port;
-  NSString *ip;
+  NSString *address;
 } Transaction_AimAddress__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1552,22 +1511,13 @@ typedef struct Transaction_AimAddress__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "ip",
+        .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = Transaction_AimAddress_FieldNumber_Ip,
+        .number = Transaction_AimAddress_FieldNumber_Address,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(Transaction_AimAddress__storage_, ip),
+        .offset = (uint32_t)offsetof(Transaction_AimAddress__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
-      },
-      {
-        .name = "port",
-        .dataTypeSpecific.className = NULL,
-        .number = Transaction_AimAddress_FieldNumber_Port,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(Transaction_AimAddress__storage_, port),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
       },
     };
     GPBDescriptor *localDescriptor =
@@ -1926,21 +1876,13 @@ typedef struct Transaction_Inputs_IssueInput__storage_ {
 
 @implementation Transaction_Outputs
 
-@dynamic hasTimestamp, timestamp;
-@dynamic hasMinimum, minimum;
-@dynamic hasMessageId, messageId;
-@dynamic hasReplyId, replyId;
 @dynamic hasScriptBytes, scriptBytes;
 @dynamic hasValue, value;
 
 typedef struct Transaction_Outputs__storage_ {
   uint32_t _has_storage_[1];
-  int32_t minimum;
-  NSString *messageId;
-  NSString *replyId;
   NSData *scriptBytes;
   NSData *value;
-  int64_t timestamp;
 } Transaction_Outputs__storage_;
 
 // This method is threadsafe because it is initially called
@@ -1950,46 +1892,10 @@ typedef struct Transaction_Outputs__storage_ {
   if (!descriptor) {
     static GPBMessageFieldDescription fields[] = {
       {
-        .name = "timestamp",
-        .dataTypeSpecific.className = NULL,
-        .number = Transaction_Outputs_FieldNumber_Timestamp,
-        .hasIndex = 0,
-        .offset = (uint32_t)offsetof(Transaction_Outputs__storage_, timestamp),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt64,
-      },
-      {
-        .name = "minimum",
-        .dataTypeSpecific.className = NULL,
-        .number = Transaction_Outputs_FieldNumber_Minimum,
-        .hasIndex = 1,
-        .offset = (uint32_t)offsetof(Transaction_Outputs__storage_, minimum),
-        .flags = GPBFieldOptional,
-        .dataType = GPBDataTypeInt32,
-      },
-      {
-        .name = "messageId",
-        .dataTypeSpecific.className = NULL,
-        .number = Transaction_Outputs_FieldNumber_MessageId,
-        .hasIndex = 2,
-        .offset = (uint32_t)offsetof(Transaction_Outputs__storage_, messageId),
-        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
-        .dataType = GPBDataTypeString,
-      },
-      {
-        .name = "replyId",
-        .dataTypeSpecific.className = NULL,
-        .number = Transaction_Outputs_FieldNumber_ReplyId,
-        .hasIndex = 3,
-        .offset = (uint32_t)offsetof(Transaction_Outputs__storage_, replyId),
-        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
-        .dataType = GPBDataTypeString,
-      },
-      {
         .name = "scriptBytes",
         .dataTypeSpecific.className = NULL,
         .number = Transaction_Outputs_FieldNumber_ScriptBytes,
-        .hasIndex = 4,
+        .hasIndex = 0,
         .offset = (uint32_t)offsetof(Transaction_Outputs__storage_, scriptBytes),
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeBytes,
@@ -1998,7 +1904,7 @@ typedef struct Transaction_Outputs__storage_ {
         .name = "value",
         .dataTypeSpecific.className = NULL,
         .number = Transaction_Outputs_FieldNumber_Value,
-        .hasIndex = 5,
+        .hasIndex = 1,
         .offset = (uint32_t)offsetof(Transaction_Outputs__storage_, value),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeBytes,
@@ -2014,7 +1920,7 @@ typedef struct Transaction_Outputs__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\003\003\t\000\004\007\000\005\013\000";
+        "\001\001\013\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     [localDescriptor setupContainingMessageClassName:GPBStringifySymbol(Transaction)];

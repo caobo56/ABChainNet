@@ -55,18 +55,19 @@
         //        }else{
         //            NSLog(@"un reply MsgPing From %@",self.host);
         //        }
-        NSLog(@"PongMessage");
-        PongMessage * pomsg = [[PongMessage alloc]init];
-        pomsg.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
-        pomsg.minimum = 1;
-        pomsg.replyId = pmsg.messageId;
-        pomsg.messageId = [NSDate getDateTimeToMilliSecondsStr:[NSDate new]];
-        pomsg.nonce = pomsg.timestamp;
-        FormaterDataObj * fmtReturn = [[FormaterDataObj alloc]initWithObj:pomsg];
         
-        if (self.delegate && [self.delegate respondsToSelector:@selector(msgModel:didSendMsg:from:)]) {
-            [super.delegate msgModel:self didSendMsg:fmtReturn.resData from:self.host];
-        }
+//        NSLog(@"PongMessage");
+//        PongMessage * pomsg = [[PongMessage alloc]init];
+//        pomsg.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
+//        pomsg.minimum = 1;
+//        pomsg.replyId = pmsg.messageId;
+//        pomsg.messageId = [NSDate getDateTimeToMilliSecondsStr:[NSDate new]];
+//        pomsg.nonce = pomsg.timestamp;
+//        FormaterDataObj * fmtReturn = [[FormaterDataObj alloc]initWithObj:pomsg];
+//
+//        if (self.delegate && [self.delegate respondsToSelector:@selector(msgModel:didSendMsg:from:)]) {
+//            [super.delegate msgModel:self didSendMsg:fmtReturn.resData from:self.host];
+//        }
     }
 }
 @end
@@ -98,18 +99,18 @@
         super.responseId = pomsg.replyId;
         super.messageId = pomsg.messageId;
         super.payload = fmt.payload;
-        NSLog(@"PingMessage");
-        PingMessage * pimsg = [[PingMessage alloc]init];
-        pimsg.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
-        pimsg.minimum = 1;
-        pimsg.replyId = pomsg.messageId;
-        pimsg.messageId = [NSDate getDateTimeToMilliSecondsStr:[NSDate new]];
-        pimsg.nonce = pomsg.timestamp;
-        FormaterDataObj * fmtReturn = [[FormaterDataObj alloc]initWithObj:pomsg];
-        
-        if (self.delegate && [self.delegate respondsToSelector:@selector(msgModel:didSendMsg:from:)]) {
-            [super.delegate msgModel:self didSendMsg:fmtReturn.resData from:self.host];
-        }
+//        NSLog(@"PingMessage");
+//        PingMessage * pimsg = [[PingMessage alloc]init];
+//        pimsg.timestamp = (int64_t)[NSDate getDateTimeToMilliSeconds:[NSDate new]];
+//        pimsg.minimum = 1;
+//        pimsg.replyId = pomsg.messageId;
+//        pimsg.messageId = [NSDate getDateTimeToMilliSecondsStr:[NSDate new]];
+//        pimsg.nonce = pomsg.timestamp;
+//        FormaterDataObj * fmtReturn = [[FormaterDataObj alloc]initWithObj:pomsg];
+//
+//        if (self.delegate && [self.delegate respondsToSelector:@selector(msgModel:didSendMsg:from:)]) {
+//            [super.delegate msgModel:self didSendMsg:fmtReturn.resData from:self.host];
+//        }
     }
 }
 
